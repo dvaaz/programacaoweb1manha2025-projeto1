@@ -1,13 +1,15 @@
 package com.senac.games.controller;
 
+import com.senac.games.dto.request.CategoriaDTORequest;
+import com.senac.games.dto.response.CategoriaDTOResponse;
 import com.senac.games.entities.Categoria;
 import com.senac.games.service.CategoriaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +23,12 @@ public class CategoriaController {
     public CategoriaController(CategoriaService categoriaService) {
         this.categoriaService = categoriaService;
 
+    }
+
+    @PostMapping("/criar")
+    @Operation(summary = "Criar nova categoria", description = "Endpoint para criar nova Categoria")
+    public ResponseEntity<CategoriaDTOResponse> criarCategoria(@Valid @RequestBody CategoriaDTORequest categoria) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(categoriaService.criarCategoria(categoria));
     }
 
     @GetMapping("/listar")
