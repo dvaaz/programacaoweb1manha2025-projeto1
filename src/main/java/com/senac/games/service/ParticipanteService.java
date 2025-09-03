@@ -63,24 +63,26 @@ public class ParticipanteService {
 
   public ParticipanteDTOResponse atualizarParticipante(Integer participanteId, ParticipanteDTORequest participanteDTORequest) {
     // antes de atualizar verifica se o registro existe
-    Participante participante = listarPorParticipanteId(participanteId);
+    Participante participante = this.listarPorParticipanteId(participanteId);
 
     // se encontrar o registro a ser atualizado
     if (participante != null) {
-       Participante participanteUpdate = participanteRepository.save(
-        modelMapper.map(participanteDTORequest, Participante.class));
+      modelMapper.map(participanteDTORequest, participante);
+      Participante tempResponse = participanteRepository.save(participante);
+      return modelMapper.map(tempResponse, ParticipanteDTOResponse.class);
 
-       return modelMapper.map(participanteUpdate, ParticipanteDTOResponse.class);
     } else {
       return null;
     }
   }
 
   public ParticipanteDTOUpdateStatusResponse atualizarStatusParticipante(Integer participanteId, ParticipanteDTOUpdateStatusRequest participanteDTOUpdateRequest) {
-      Participante participante = listarPorParticipanteId(participanteId);
+      Participante participante = this.listarPorParticipanteId(participanteId);
 
       if (participante != null) {
-        participante.setStatus(participanteDTOUpdateRequest.getStatus());
+        //copia os dados a serem atualizados do DTO de entrada para um objeto do tipo participante
+        //que é compatível com o repository para atualizar
+        modelMapper.map(participanteDTOUpdateRequest,participante);
 
         Participante tempResponse = participanteRepository.save(participante);
         return modelMapper.map(tempResponse, ParticipanteDTOUpdateStatusResponse.class);
@@ -88,5 +90,6 @@ public class ParticipanteService {
       } else  {
       return null;
       }
+
   }
 }
