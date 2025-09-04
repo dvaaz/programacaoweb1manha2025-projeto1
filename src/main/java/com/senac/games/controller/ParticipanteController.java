@@ -8,6 +8,7 @@ import com.senac.games.entities.Participante;
 import com.senac.games.service.ParticipanteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.Part;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,14 +26,33 @@ public class ParticipanteController {
         this.participanteService = participanteService;
     }
 
-    @GetMapping("/listar")
-    @Operation(summary="Listar participantes", description = "Endpoint para listar todos os participantes")
+    @GetMapping("/listar/todos")
+    @Operation(summary="Listar participantes", description = "Endpoint para listar todos os participantes, incluindo apagados logicamente")
     public ResponseEntity<List<Participante>> listarParticipantes(){
         return ResponseEntity.ok(participanteService.listarParticipantes());
     }
 
-    @GetMapping("/listarPorParticipanteId/{participanteId}")
-    @Operation(summary = "Lista participante por ID", description = "Endpoint para listar participante por ID")
+    @GetMapping("/listar")
+    @Operation(summary="Listar participantes", description = "Endpoint para listar todos os participantes")
+    public ResponseEntity<List<Participante>> listarParticipantesAtivos(){
+        return ResponseEntity.ok(participanteService.listarParticipantesAtivos());
+    }
+
+    @GetMapping("/listarParticipanteId/{participanteId}")
+    @Operation(summary = "Listar Participante por Id", description="Endpoint para listar participante ativo por ID")
+    public ResponseEntity<Participante> obterParticipantePorID(@PathVariable("participanteId") Integer participanteId) {
+        Participante participante = participanteService.obterParticipantePorID(participanteId);
+        /**
+         * Caso o participante não seja null retorna o Participante por participanteId
+         */
+        if(participante != null){
+            return ResponseEntity.ok(participanteService.obterParticipantePorID(participanteId));
+        } else
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/listarQualquerParticipanteId/{participanteId}")
+    @Operation(summary = "Lista participante por ID", description = "Endpoint para listar participante por ID, incluindo removidos logicamente")
     public ResponseEntity<Participante> listarPorParticipanteId(@PathVariable("participanteId") Integer participanteId) {
         Participante participante = participanteService.listarPorParticipanteId(participanteId);
         /**
@@ -40,7 +60,7 @@ public class ParticipanteController {
          */
         if(participante != null){
             return ResponseEntity.ok(participanteService.listarPorParticipanteId(participanteId));
-        }
+        } else
         return ResponseEntity.noContent().build();
     }
 
@@ -60,11 +80,20 @@ public class ParticipanteController {
       return ResponseEntity.ok(participanteService.atualizarParticipante(participanteId, participanteDTORequest));
     }
 
-    @PatchMapping("/atualizar/{participanteID}")
-    @Operation(summary = "Atualizar status do participante", description = "Endpoint para atualizar o status do participante")
+    @PatchMapping("/atualizarStatus/{participanteId}")
+    @Operation(summary = "Atualizar campo status do participante", description = "Endpoint para atualizar o status do participante")
     public ResponseEntity<ParticipanteDTOUpdateStatusResponse> atualizarStatusParticipante(
-        @PathVariable("participanteID") Integer participanteId,
-        @RequestBody ParticipanteDTOUpdateStatusRequest participanteDTOUpdateStatusRequest ) {
-      return ResponseEntity.ok(participanteService.atualizarStatusParticipante(participanteId, participanteDTOUpdateStatusRequest));
+        @PathVariable("participanteId") Integer participanteId,
+        @RequestBody ParticipanteDTOUpdateStatusRequest participanteDTOUpdateStatusRequest){
+        return  ResponseEntity.ok(participanteService.atualizarStatusParticipante(participanteId, participanteDTOUpdateStatusRequest));
+    }
+
+    @DeleteMapping("/deletar/{participanteID}")
+    @Operation(summary = "Remove participante", description = "Endpoint para remover logicamente o participante")
+    public ResponseEntity apagarParticipante(
+        @PathVariable("participanteId") Integer participanteId,
+        @RequestBody ParticipanteDTORequest participanteDTORequest){
+        this.participanteService.apagarParticipante(participanteId);
+        return  ResponseEntity.noContent().build();
     }
 }

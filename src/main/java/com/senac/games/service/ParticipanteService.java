@@ -28,9 +28,19 @@ public class ParticipanteService {
         return this.participanteRepository.findAll();
     }
 
+    public List<Participante> listarParticipantesAtivos() { return this.participanteRepository.listarParticipantes(); }
+
     public Participante listarPorParticipanteId(Integer participanteId) {
-            return this.participanteRepository.findById(participanteId).orElse(null);
+      return this.participanteRepository.findById(participanteId).orElse(null);
     }
+
+    public Participante obterParticipantePorID(Integer participanteId) {
+      Participante participante = this.participanteRepository.obterParticipantePorID(participanteId);
+      if (participante != null) {
+        return this.participanteRepository.obterParticipantePorID(participanteId);
+      } else return null;
+    }
+
 
     public ParticipanteDTOResponse criarParticipante(ParticipanteDTORequest participanteDTORequest) {
         // Mapper recebe o DTO de um tipo e o transforma em Participante
@@ -77,19 +87,26 @@ public class ParticipanteService {
   }
 
   public ParticipanteDTOUpdateStatusResponse atualizarStatusParticipante(Integer participanteId, ParticipanteDTOUpdateStatusRequest participanteDTOUpdateRequest) {
-      Participante participante = this.listarPorParticipanteId(participanteId);
+    //antes de atualizar busca se existe o registro a ser atualizar
+    Participante participante = this.listarPorParticipanteId(participanteId);
 
-      if (participante != null) {
-        //copia os dados a serem atualizados do DTO de entrada para um objeto do tipo participante
-        //que é compatível com o repository para atualizar
-        modelMapper.map(participanteDTOUpdateRequest,participante);
+    //se encontra o registro a ser atualizado
+    if (participante != null) {
+      //atualizamos unicamente o campo de status
+      participante.setStatus(participanteDTOUpdateRequest.getStatus());
 
-        Participante tempResponse = participanteRepository.save(participante);
-        return modelMapper.map(tempResponse, ParticipanteDTOUpdateStatusResponse.class);
-
-      } else  {
+      //com o objeto no formato correto tipo "participante" o comando "save" salva
+      // no banco de dados o objeto atualizado
+      Participante tempResponse = participanteRepository.save(participante);
+      return modelMapper.map(tempResponse, ParticipanteDTOUpdateStatusResponse.class);
+    }
+    else{
       return null;
-      }
+    }
+  }
+
+  public void apagarParticipante(Integer participanteId) {
+    this.participanteRepository.apagadoLogicoParticipante(participanteId);
 
   }
 }

@@ -1,7 +1,15 @@
 package com.senac.games.dto.response;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+
 public class ParticipanteDTOUpdateStatusResponse {
+  @NotEmpty
   private int id;
+  @NotEmpty
+  @Min(0)
+  @Max(2)
   private int status;
 
   public int getId() {
