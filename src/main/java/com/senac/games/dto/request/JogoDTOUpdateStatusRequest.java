@@ -5,20 +5,22 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
-public class ParticipanteDTOUpdateStatusRequest {
+public class JogoDTOUpdateStatusRequest {
     @NotNull
     @NotEmpty
     @Min(1)
     @Max(2)
-  private Integer status;
+    private Integer status;
 
-  public Integer getStatus() {
-    return status;
-  }
+    public Integer getStatus() {
+        return status;
+    }
 
-  public void setStatus(int status) {
-    this.status = status;
-  }
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+
 
 
 }

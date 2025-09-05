@@ -1,8 +1,8 @@
 package com.senac.games.service;
 
 import com.senac.games.dto.request.ParticipanteDTORequest;
-import com.senac.games.dto.request.ParticipanteDTOUpdateStatusRequest;
 import com.senac.games.dto.response.ParticipanteDTOResponse;
+import com.senac.games.dto.request.ParticipanteDTOUpdateStatusRequest;
 import com.senac.games.dto.response.ParticipanteDTOUpdateStatusResponse;
 import com.senac.games.entities.Participante;
 import com.senac.games.repository.ParticipanteRepository;
@@ -106,7 +106,7 @@ public class ParticipanteService {
   }
 
   public void apagarParticipante(Integer participanteId) {
-    this.participanteRepository.apagadoLogicoParticipante(participanteId);
+    this.participanteRepository.apagarLogicoParticipante(participanteId);
 
   }
 }

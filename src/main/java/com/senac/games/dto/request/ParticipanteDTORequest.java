@@ -1,11 +1,22 @@
 package com.senac.games.dto.request;
 
+import jakarta.validation.constraints.*;
+
 public class ParticipanteDTORequest {
-  private String nome;
-  private String email;
-  private String indentificacao;
-  private String endereco;
-  private int status;
+    @NotBlank(message = "O campo não pode estar vazio")
+    @Size(min=3, max=255, message= "O nome tem de ter entre 3 e 255 caracteres")
+    private String nome;
+    @Email(message="Insira um email valido")
+    private String email;
+    @NotBlank(message = "Preencha uma identificacao")
+    private String indentificacao;
+    @NotBlank(message = "O campo não pode estar vazio")
+    @Size(min=5, max=255, message= "O endereco tem de ter entre 5 e 255 caracteres")
+    private String endereco;
+    @NotEmpty
+    @Min(1)
+    @Max(2)
+    private int status;
 
   public String getNome() {
     return nome;
