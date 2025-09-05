@@ -3,8 +3,8 @@ package com.senac.games.dto.response;
 public class PremioDTOResponse {
   private Integer id;
   private String descricao;
-  private Integer ordem;
-  private Integer status;
+  private int ordem;
+  private int status;
 
   public Integer getId() {
     return id;
@@ -22,19 +22,19 @@ public class PremioDTOResponse {
     this.descricao = descricao;
   }
 
-  public Integer getOrdem() {
+  public int getOrdem() {
     return ordem;
   }
 
-  public void setOrdem(Integer ordem) {
+  public void setOrdem(int ordem) {
     this.ordem = ordem;
   }
 
-  public Integer getStatus() {
+  public int getStatus() {
     return status;
   }
 
-  public void setStatus(Integer status) {
+  public void setStatus(int status) {
     this.status = status;
   }
 }

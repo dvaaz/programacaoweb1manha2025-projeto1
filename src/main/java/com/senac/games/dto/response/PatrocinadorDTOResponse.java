@@ -4,7 +4,7 @@ public class PatrocinadorDTOResponse {
   private Integer id;
   private String nome;
   private String representanteNome;
-  private Integer status;
+  private int status;
 
   public Integer getId() {
     return id;
@@ -30,11 +30,11 @@ public class PatrocinadorDTOResponse {
     this.representanteNome = representanteNome;
   }
 
-  public Integer getStatus() {
+  public int getStatus() {
     return status;
   }
 
-  public void setStatus(Integer status) {
+  public void setStatus(int status) {
     this.status = status;
   }
 }

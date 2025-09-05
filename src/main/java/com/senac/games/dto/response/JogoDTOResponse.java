@@ -3,7 +3,7 @@ package com.senac.games.dto.response;
 public class JogoDTOResponse {
   private Integer id;
   private String nome;
-  private Integer status;
+  private int status;
 
   public Integer getId() {
     return id;
@@ -21,11 +21,11 @@ public class JogoDTOResponse {
     this.nome = nome;
   }
 
-  public Integer getStatus() {
+  public int getStatus() {
     return status;
   }
 
-  public void setStatus(Integer status) {
+  public void setStatus(int status) {
     this.status = status;
   }
 }

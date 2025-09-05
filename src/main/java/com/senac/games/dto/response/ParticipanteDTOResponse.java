@@ -6,7 +6,7 @@ public class ParticipanteDTOResponse {
   private String email;
   private String indentificacao;
   private String endereco;
-  private Integer status;
+  private int status;
 
   public Integer getId() {
     return id;
@@ -48,11 +48,11 @@ public class ParticipanteDTOResponse {
     this.endereco = endereco;
   }
 
-  public Integer getStatus() {
+  public int getStatus() {
     return status;
   }
 
-  public void setStatus(Integer status) {
+  public void setStatus(int status) {
     this.status = status;
   }
 }

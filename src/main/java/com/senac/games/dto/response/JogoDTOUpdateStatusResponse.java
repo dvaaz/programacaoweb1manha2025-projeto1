@@ -5,7 +5,7 @@ public class JogoDTOUpdateStatusResponse {
 
   private Integer id;
 
-  private Integer status;
+  private int status;
 
   public Integer getId() {
     return id;
@@ -15,11 +15,11 @@ public class JogoDTOUpdateStatusResponse {
     this.id = id;
   }
 
-  public Integer getStatus() {
+  public int getStatus() {
     return status;
   }
 
-  public void setStatus(Integer status) {
+  public void setStatus(int status) {
     this.status = status;
   }
 }
