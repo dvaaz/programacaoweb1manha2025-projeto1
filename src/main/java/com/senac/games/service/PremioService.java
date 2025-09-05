@@ -12,7 +12,6 @@ import com.senac.games.entities.Premio;
 import com.senac.games.entities.Premio;
 import com.senac.games.repository.PremioRepository;
 import com.senac.games.repository.PremioRepository;
-import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +29,6 @@ public class PremioService {
         this.premioRepository = premioRepository;
     }
 
-    @Transactional
     public PremioDTOResponse criarPremio(PremioDTORequest premioDTORequest) {
         Premio premio = modelMapper.map(premioDTORequest, Premio.class);
 
@@ -49,7 +47,6 @@ public class PremioService {
         } else return null;
     }
 
-    @Transactional
     public PremioDTOUpdateStatusResponse atualizarStatusPremio(Integer premioId, PremioDTOUpdateStatusRequest premioDTOUpdateStatusRequest) {
         Premio premio = this.listarPremioPorId(premioId);
         if (premio != null) {
@@ -60,7 +57,6 @@ public class PremioService {
         } else return null;
     }
 
-    @Transactional
     public PremioDTOResponse atualizarPremio(Integer premioId, PremioDTORequest premioDTORequest) {
         Premio premio = this.listarPremioPorId(premioId);
 
@@ -72,7 +68,6 @@ public class PremioService {
         } else return null;
     }
 
-    @Transactional
     public void apagarPremio(Integer premioId){
         this.premioRepository.apagarLogicoPremio(premioId);
     }

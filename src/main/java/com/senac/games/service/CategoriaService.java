@@ -6,7 +6,6 @@ import com.senac.games.dto.response.CategoriaDTOResponse;
 import com.senac.games.dto.response.CategoriaDTOUpdateStatusResponse;
 import com.senac.games.entities.Categoria;
 import com.senac.games.repository.CategoriaRepository;
-import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +23,6 @@ public class CategoriaService {
         this.categoriaRepository = categoriaRepository;
     }
 
-    @Transactional
     public CategoriaDTOResponse criarCategoria(CategoriaDTORequest categoriaDTORequest) {
         Categoria categoria = modelMapper.map(categoriaDTORequest, Categoria.class);
 
@@ -43,7 +41,6 @@ public class CategoriaService {
         } else return null;
     }
 
-    @Transactional
     public CategoriaDTOUpdateStatusResponse atualizarStatusCategoria(Integer categoriaId, CategoriaDTOUpdateStatusRequest categoriaDTOUpdateStatusRequest) {
         Categoria categoria = this.listarCategoriaPorId(categoriaId);
         if (categoria != null) {
@@ -53,7 +50,7 @@ public class CategoriaService {
             return modelMapper.map(tempResponse, CategoriaDTOUpdateStatusResponse.class);
         } else return null;
     }
-    @Transactional
+
     public CategoriaDTOResponse atualizarCategoria(Integer categoriaId, CategoriaDTORequest categoriaDTORequest) {
     Categoria categoria = this.listarCategoriaPorId(categoriaId);
 
@@ -64,7 +61,7 @@ public class CategoriaService {
 
     } else return null;
     }
-    @Transactional
+
     public void apagarCategoria(Integer categoriaId){
         this.categoriaRepository.apagarLogicoCategoria(categoriaId);
     }

@@ -6,7 +6,6 @@ import com.senac.games.dto.response.JogoDTOResponse;
 import com.senac.games.dto.response.JogoDTOUpdateStatusResponse;
 import com.senac.games.entities.Jogo;
 import com.senac.games.repository.JogoRepository;
-import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +23,6 @@ public class JogoService {
         this.jogoRepository = jogoRepository;
     }
 
-    @Transactional
     public JogoDTOResponse criarJogo(JogoDTORequest jogoDTORequest) {
         Jogo jogo = modelMapper.map(jogoDTORequest, Jogo.class);
 
@@ -43,7 +41,6 @@ public class JogoService {
         } else return null;
     }
 
-    @Transactional
     public JogoDTOUpdateStatusResponse atualizarStatusJogo(Integer jogoId, JogoDTOUpdateStatusRequest jogoDTOUpdateStatusRequest) {
         Jogo jogo = this.listarJogoPorId(jogoId);
         if (jogo != null) {
@@ -54,7 +51,6 @@ public class JogoService {
         } else return null;
     }
 
-    @Transactional
     public JogoDTOResponse atualizarJogo(Integer jogoId, JogoDTORequest jogoDTORequest) {
         Jogo jogo = this.listarJogoPorId(jogoId);
 
@@ -66,7 +62,6 @@ public class JogoService {
         } else return null;
     }
 
-    @Transactional
     public void apagarJogo(Integer jogoId){
         this.jogoRepository.apagarLogicoJogo(jogoId);
     }

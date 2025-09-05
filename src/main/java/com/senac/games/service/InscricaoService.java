@@ -6,7 +6,6 @@ import com.senac.games.dto.response.InscricaoDTOResponse;
 import com.senac.games.dto.response.InscricaoDTOUpdateStatusResponse;
 import com.senac.games.entities.Inscricao;
 import com.senac.games.repository.InscricaoRepository;
-import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +23,6 @@ public class InscricaoService {
         this.inscricaoRepository = inscricaoRepository;
     }
 
-  @Transactional
     public InscricaoDTOResponse criarInscricao(InscricaoDTORequest inscricaoDTORequest) {
         Inscricao inscricao = modelMapper.map(inscricaoDTORequest, Inscricao.class);
 
@@ -33,7 +31,6 @@ public class InscricaoService {
 
         return inscricaoDTOResponse;
     }
-
 
     public List<Inscricao> listarInscricaos() { return this.inscricaoRepository.listarInscricaos(); }
 
@@ -44,7 +41,6 @@ public class InscricaoService {
         } else return null;
     }
 
-  @Transactional
     public InscricaoDTOUpdateStatusResponse atualizarStatusInscricao(Integer inscricaoId, InscricaoDTOUpdateStatusRequest inscricaoDTOUpdateStatusRequest) {
         Inscricao inscricao = this.listarInscricaoPorId(inscricaoId);
         if (inscricao != null) {
@@ -55,7 +51,6 @@ public class InscricaoService {
         } else return null;
     }
 
-  @Transactional
     public InscricaoDTOResponse atualizarInscricao(Integer inscricaoId, InscricaoDTORequest inscricaoDTORequest) {
         Inscricao inscricao = this.listarInscricaoPorId(inscricaoId);
 
@@ -67,7 +62,6 @@ public class InscricaoService {
         } else return null;
     }
 
-  @Transactional
     public void apagarInscricao(Integer inscricaoId){
         this.inscricaoRepository.apagarLogicoInscricao(inscricaoId);
     }

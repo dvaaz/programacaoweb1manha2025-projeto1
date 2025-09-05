@@ -6,7 +6,6 @@ import com.senac.games.dto.response.PatrocinadorDTOResponse;
 import com.senac.games.dto.response.PatrocinadorDTOUpdateStatusResponse;
 import com.senac.games.entities.Patrocinador;
 import com.senac.games.repository.PatrocinadorRepository;
-import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +23,6 @@ public class PatrocinadorService {
         this.patrocinadorRepository = patrocinadorRepository;
     }
 
-    @Transactional
     public PatrocinadorDTOResponse criarPatrocinador(PatrocinadorDTORequest patrocinadorDTORequest) {
         Patrocinador patrocinador = modelMapper.map(patrocinadorDTORequest, Patrocinador.class);
 
@@ -43,7 +41,6 @@ public class PatrocinadorService {
         } else return null;
     }
 
-    @Transactional
     public PatrocinadorDTOUpdateStatusResponse atualizarStatusPatrocinador(Integer patrocinadorId, PatrocinadorDTOUpdateStatusRequest patrocinadorDTOUpdateStatusRequest) {
         Patrocinador patrocinador = this.listarPatrocinadorPorId(patrocinadorId);
         if (patrocinador != null) {
@@ -54,7 +51,6 @@ public class PatrocinadorService {
         } else return null;
     }
 
-    @Transactional
     public PatrocinadorDTOResponse atualizarPatrocinador(Integer patrocinadorId, PatrocinadorDTORequest patrocinadorDTORequest) {
         Patrocinador patrocinador = this.listarPatrocinadorPorId(patrocinadorId);
 
@@ -66,7 +62,6 @@ public class PatrocinadorService {
         } else return null;
     }
 
-    @Transactional
     public void apagarPatrocinador(Integer patrocinadorId){
         this.patrocinadorRepository.apagarLogicoPatrocinador(patrocinadorId);
     }
