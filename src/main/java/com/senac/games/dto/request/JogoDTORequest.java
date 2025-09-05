@@ -6,6 +6,10 @@ public class JogoDTORequest {
     @NotBlank(message = "O campo não pode estar vazio")
     @Size(min=3, max=255, message= "O nome tem de ter entre 3 e 255 caracteres")
     private String nome;
+
+  @NotNull
+  @NotEmpty
+    private int categoriaId;
     @NotEmpty
     @Min(1)
     @Max(2)
@@ -17,6 +21,14 @@ public class JogoDTORequest {
 
   public void setNome(String nome) {
     this.nome = nome;
+  }
+
+  public int getCategoriaId() {
+    return categoriaId;
+  }
+
+  public void setCategoriaId(int categoriaId) {
+    this.categoriaId = categoriaId;
   }
 
   public Integer getStatus() {

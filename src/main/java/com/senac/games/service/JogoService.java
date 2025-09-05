@@ -5,7 +5,9 @@ import com.senac.games.dto.request.JogoDTOUpdateStatusRequest;
 import com.senac.games.dto.response.JogoDTOResponse;
 import com.senac.games.dto.response.JogoDTOUpdateStatusResponse;
 import com.senac.games.entities.Jogo;
+import com.senac.games.repository.CategoriaRepository;
 import com.senac.games.repository.JogoRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,12 +17,14 @@ import java.util.List;
 @Service
 public class JogoService {
     private final JogoRepository jogoRepository;
+    private final CategoriaRepository categoriaRepository;
 
     @Autowired
     private ModelMapper modelMapper;
 
-    public JogoService(JogoRepository jogoRepository) {
+    public JogoService(JogoRepository jogoRepository, CategoriaRepository categoriaRepository) {
         this.jogoRepository = jogoRepository;
+        this.categoriaRepository = categoriaRepository;
     }
 
     public JogoDTOResponse criarJogo(JogoDTORequest jogoDTORequest) {
@@ -52,13 +56,14 @@ public class JogoService {
     }
 
     public JogoDTOResponse atualizarJogo(Integer jogoId, JogoDTORequest jogoDTORequest) {
+
         Jogo jogo = this.listarJogoPorId(jogoId);
-
         if (jogo != null) {
-            modelMapper.map(jogoDTORequest, jogo);
-            Jogo tempResponse = jogoRepository.save(jogo);
-            return modelMapper.map(tempResponse, JogoDTOResponse.class);
-
+            jogo.setNome(jogoDTORequest.getNome());
+            jogo.setStatus(jogoDTORequest.getStatus());
+            jogo.getCategoria(
+                categoriaRepository.findById(jogoDTORequest.getCategoriaId()).orElseThrow(()->new IllegalArgumentException("Categoria não encontrada com id: "+jogoDTORequest.getCategoriaId()))
+                );
         } else return null;
     }
 
