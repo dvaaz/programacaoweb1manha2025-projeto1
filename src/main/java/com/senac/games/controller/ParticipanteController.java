@@ -33,7 +33,7 @@ public class ParticipanteController {
     }
 
     @GetMapping("/listar")
-    @Operation(summary="Listar participantes", description = "Endpoint para listar todos os participantes")
+    @Operation(summary="Listar participantes", description = "Endpoint para listar todos os participantes,  utilizando o método findAll() do Spring")
     public ResponseEntity<List<Participante>> listarParticipantesAtivos(){
         return ResponseEntity.ok(participanteService.listarParticipantesAtivos());
     }
@@ -52,7 +52,7 @@ public class ParticipanteController {
     }
 
     @GetMapping("/listarQualquerParticipanteId/{participanteId}")
-    @Operation(summary = "Lista participante por ID", description = "Endpoint para listar participante por ID, incluindo removidos logicamente")
+    @Operation(summary = "Lista participante por ID", description = "Endpoint para listar participante por ID, utilizando o método findById do Spring")
     public ResponseEntity<Participante> listarPorParticipanteId(@PathVariable("participanteId") Integer participanteId) {
         Participante participante = participanteService.listarPorParticipanteId(participanteId);
         /**
@@ -74,7 +74,7 @@ public class ParticipanteController {
     @PutMapping("/atualizar/{participanteId}")
     @Operation(summary = "Atualizar dados do participante", description = "Atualizar todos os dados do participante")
     public ResponseEntity<ParticipanteDTOResponse> atualizarParticipante(
-        @PathVariable("participanteId") Integer participanteId,
+        @Valid @PathVariable("participanteId") Integer participanteId,
         @RequestBody ParticipanteDTORequest participanteDTORequest) {
 
       return ResponseEntity.ok(participanteService.atualizarParticipante(participanteId, participanteDTORequest));
@@ -83,14 +83,17 @@ public class ParticipanteController {
     @PatchMapping("/atualizarStatus/{participanteId}")
     @Operation(summary = "Atualizar campo status do participante", description = "Endpoint para atualizar o status do participante")
     public ResponseEntity<ParticipanteDTOUpdateStatusResponse> atualizarStatusParticipante(
+        @Valid
         @PathVariable("participanteId") Integer participanteId,
         @RequestBody ParticipanteDTOUpdateStatusRequest participanteDTOUpdateStatusRequest){
+
         return  ResponseEntity.ok(participanteService.atualizarStatusParticipante(participanteId, participanteDTOUpdateStatusRequest));
     }
 
-    @DeleteMapping("/deletar/{participanteID}")
+    @DeleteMapping("/remover/{participanteID}")
     @Operation(summary = "Remove participante", description = "Endpoint para remover logicamente o participante")
     public ResponseEntity apagarParticipante(
+        @Valid
         @PathVariable("participanteId") Integer participanteId,
         @RequestBody ParticipanteDTORequest participanteDTORequest){
         this.participanteService.apagarParticipante(participanteId);

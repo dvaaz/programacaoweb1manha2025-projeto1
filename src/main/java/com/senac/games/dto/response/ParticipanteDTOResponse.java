@@ -1,18 +1,18 @@
 package com.senac.games.dto.response;
 
 public class ParticipanteDTOResponse {
-  private int id;
+  private Integer id;
   private String nome;
   private String email;
   private String indentificacao;
   private String endereco;
-  private int status;
+  private Integer status;
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -48,11 +48,11 @@ public class ParticipanteDTOResponse {
     this.endereco = endereco;
   }
 
-  public int getStatus() {
+  public Integer getStatus() {
     return status;
   }
 
-  public void setStatus(int status) {
+  public void setStatus(Integer status) {
     this.status = status;
   }
 }

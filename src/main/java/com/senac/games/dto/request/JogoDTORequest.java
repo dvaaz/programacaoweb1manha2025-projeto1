@@ -1,8 +1,15 @@
 package com.senac.games.dto.request;
 
+import jakarta.validation.constraints.*;
+
 public class JogoDTORequest {
-  private String nome;
-  private int status;
+    @NotBlank(message = "O campo não pode estar vazio")
+    @Size(min=3, max=255, message= "O nome tem de ter entre 3 e 255 caracteres")
+    private String nome;
+    @NotEmpty
+    @Min(1)
+    @Max(2)
+  private Integer status;
 
   public String getNome() {
     return nome;
@@ -12,11 +19,11 @@ public class JogoDTORequest {
     this.nome = nome;
   }
 
-  public int getStatus() {
+  public Integer getStatus() {
     return status;
   }
 
-  public void setStatus(int status) {
+  public void setStatus(Integer status) {
     this.status = status;
   }
 }

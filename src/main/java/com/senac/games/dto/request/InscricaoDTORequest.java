@@ -1,10 +1,17 @@
 package com.senac.games.dto.request;
 
+import jakarta.validation.constraints.*;
+
 import java.util.Date;
 
 public class InscricaoDTORequest {
-  private Date data;
-  private int status;
+    @NotBlank(message = "O campo não pode ser deixado em branco")
+    private Date data;
+    @NotNull
+    @NotEmpty
+    @Min(1)
+    @Max(2)
+  private Integer status;
 
   public Date getData() {
     return data;
@@ -14,11 +21,11 @@ public class InscricaoDTORequest {
     this.data = data;
   }
 
-  public int getStatus() {
-    return status;
-  }
+    public Integer getStatus() {
+        return status;
+    }
 
-  public void setStatus(int status) {
-    this.status = status;
-  }
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 }

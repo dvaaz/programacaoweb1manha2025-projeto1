@@ -17,7 +17,7 @@ public interface ParticipanteRepository extends JpaRepository<Participante,Integ
   @Transactional
   @Query("UPDATE Participante p SET p.status = -1 " +
       "WHERE p.id = :id")
-  void apagadoLogicoParticipante(@Param("id") Integer participanteId) ;
+  void apagarLogicoParticipante(@Param("id") Integer participanteId) ;
 
   @Query("SELECT p FROM Participante p WHERE p.status>=0")
   List<Participante> listarParticipantes();

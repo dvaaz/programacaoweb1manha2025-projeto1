@@ -4,12 +4,12 @@ public class CategoriaDTOResponse {
   private int id;
   private String nome;
 
-  private int status;
+  private Integer status;
 
-  public int getId() {    return id;
+  public Integer getId() {    return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -21,11 +21,11 @@ public class CategoriaDTOResponse {
     this.nome = nome;
   }
 
-  public int getStatus() {
+  public Integer getStatus() {
     return status;
   }
 
-  public void setStatus(int status) {
+  public void setStatus(Integer status) {
     this.status = status;
   }
 }

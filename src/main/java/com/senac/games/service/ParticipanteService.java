@@ -1,11 +1,12 @@
 package com.senac.games.service;
 
 import com.senac.games.dto.request.ParticipanteDTORequest;
-import com.senac.games.dto.request.ParticipanteDTOUpdateStatusRequest;
 import com.senac.games.dto.response.ParticipanteDTOResponse;
+import com.senac.games.dto.request.ParticipanteDTOUpdateStatusRequest;
 import com.senac.games.dto.response.ParticipanteDTOUpdateStatusResponse;
 import com.senac.games.entities.Participante;
 import com.senac.games.repository.ParticipanteRepository;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,12 +25,14 @@ public class ParticipanteService {
         this.participanteRepository = participanteRepository;
     }
 
+  //busca por todos objetos atraves do metodo findAll do Spring
     public List<Participante> listarParticipantes() {
         return this.participanteRepository.findAll();
     }
 
     public List<Participante> listarParticipantesAtivos() { return this.participanteRepository.listarParticipantes(); }
 
+  //busca por todos objetos atraves do metodo findById do Spring
     public Participante listarPorParticipanteId(Integer participanteId) {
       return this.participanteRepository.findById(participanteId).orElse(null);
     }
@@ -42,6 +45,7 @@ public class ParticipanteService {
     }
 
 
+  @Transactional
     public ParticipanteDTOResponse criarParticipante(ParticipanteDTORequest participanteDTORequest) {
         // Mapper recebe o DTO de um tipo e o transforma em Participante
         Participante participante = modelMapper.map(participanteDTORequest, Participante.class);
@@ -71,6 +75,7 @@ public class ParticipanteService {
         return participanteDTOResponse;
     }
 
+  @Transactional
   public ParticipanteDTOResponse atualizarParticipante(Integer participanteId, ParticipanteDTORequest participanteDTORequest) {
     // antes de atualizar verifica se o registro existe
     Participante participante = this.listarPorParticipanteId(participanteId);
@@ -86,6 +91,7 @@ public class ParticipanteService {
     }
   }
 
+  @Transactional
   public ParticipanteDTOUpdateStatusResponse atualizarStatusParticipante(Integer participanteId, ParticipanteDTOUpdateStatusRequest participanteDTOUpdateRequest) {
     //antes de atualizar busca se existe o registro a ser atualizar
     Participante participante = this.listarPorParticipanteId(participanteId);
@@ -105,8 +111,9 @@ public class ParticipanteService {
     }
   }
 
+  @Transactional
   public void apagarParticipante(Integer participanteId) {
-    this.participanteRepository.apagadoLogicoParticipante(participanteId);
+    this.participanteRepository.apagarLogicoParticipante(participanteId);
 
   }
 }

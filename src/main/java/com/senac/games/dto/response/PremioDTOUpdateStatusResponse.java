@@ -1,11 +1,11 @@
 package com.senac.games.dto.response;
 
-import java.util.Date;
 
-public class InscricaoDTOResponse {
+public class PremioDTOUpdateStatusResponse {
+
   private Integer id;
-  private Date data;
-  private int status;
+
+  private Integer status;
 
   public Integer getId() {
     return id;
@@ -13,14 +13,6 @@ public class InscricaoDTOResponse {
 
   public void setId(Integer id) {
     this.id = id;
-  }
-
-  public Date getData() {
-    return data;
-  }
-
-  public void setData(Date data) {
-    this.data = data;
   }
 
   public Integer getStatus() {
