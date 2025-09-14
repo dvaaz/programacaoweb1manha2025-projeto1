@@ -10,7 +10,9 @@ import com.senac.games.repository.JogoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -61,10 +63,15 @@ public class JogoService {
         if (jogo != null) {
             jogo.setNome(jogoDTORequest.getNome());
             jogo.setStatus(jogoDTORequest.getStatus());
-            jogo.getCategoria(
+            jogo.setCategoria(
                 categoriaRepository.findById(jogoDTORequest.getCategoriaId()).orElseThrow(()->new IllegalArgumentException("Categoria não encontrada com id: "+jogoDTORequest.getCategoriaId()))
                 );
-        } else return null;
+            Jogo jogoSave = jogoRepository.save(jogo);
+            return modelMapper.map(jogoSave, JogoDTOResponse.class);
+        } else{
+            // Error 400 caso tente atualiza jogo inexistente.
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
     }
 
     public void apagarJogo(Integer jogoId){
