@@ -21,7 +21,7 @@ public interface PremioRepository extends JpaRepository<Premio, Integer> {
     @Query("SELECT p FROM Premio p WHERE p.status>=0")
     List<Premio> listarPremios();
 
-    @Query("SELECT p FROM Premio p WHERE p.status = :id AND p.status>=0")
+    @Query("SELECT p FROM Premio p WHERE p.id = :id AND p.status>=0")
     Premio obterPremioPorID(@Param("id") Integer premioId);
 
 }

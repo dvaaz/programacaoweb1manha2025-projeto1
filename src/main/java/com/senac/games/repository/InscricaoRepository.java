@@ -21,6 +21,6 @@ public interface InscricaoRepository extends JpaRepository<Inscricao,Integer> {
     @Query("SELECT p FROM Inscricao p WHERE p.status>=0")
     List<Inscricao> listarInscricaos();
 
-    @Query("SELECT p FROM Inscricao p WHERE p.status = :id AND p.status>=0")
+    @Query("SELECT p FROM Inscricao p WHERE p.id = :id AND p.status>=0")
     Inscricao obterInscricaoPorID(@Param("id") Integer inscricaoId);
 }
