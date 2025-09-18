@@ -1,5 +1,6 @@
 package com.senac.games.repository;
 
+import com.senac.games.dto.response.JogoDTOResponse;
 import com.senac.games.entities.Jogo;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;

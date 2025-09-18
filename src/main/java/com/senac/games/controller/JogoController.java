@@ -35,22 +35,15 @@ public class JogoController {
 
     @GetMapping("/listar")
     @Operation(summary="Listar jogos", description = "Endpoint para listar todos as jogos")
-    public ResponseEntity<List<Jogo>> listarJogos() {
+    public ResponseEntity<List<JogoDTOResponse>> listarJogos() {
         return ResponseEntity.ok(jogoService.listarJogos());
-
     }
 
     @GetMapping("/listarJogoId/{jogoId}")
     @Operation(summary = "Listar Jogo por Id", description="Endpoint para listar jogo ativo por ID")
-    public ResponseEntity<Jogo> listarJogoPorId(@Valid @PathVariable("jogoId") Integer jogoId) {
-        Jogo jogo = jogoService.listarJogoPorId(jogoId);
-
-        if(jogo != null){
-            return ResponseEntity.ok(jogoService.listarJogoPorId(jogoId));
-        } else
-            return ResponseEntity.noContent().build();
+    public ResponseEntity<JogoDTOResponse> listarJogoPorId(@Valid @PathVariable("jogoId") Integer jogoId) {
+        return ResponseEntity.ok(jogoService.listarJogoPorId(jogoId));
     }
-
 
     @PutMapping("/atualizar/{jogoId}")
     @Operation(summary = "Atualizar jogo", description = "Endpoint para atualizar a jogo")

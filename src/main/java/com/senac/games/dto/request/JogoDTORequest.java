@@ -9,7 +9,7 @@ public class JogoDTORequest {
 
   @NotNull
   @NotEmpty
-    private int categoriaId;
+    private Integer categoriaId;
     @NotEmpty
     @Min(1)
     @Max(2)
@@ -23,11 +23,11 @@ public class JogoDTORequest {
     this.nome = nome;
   }
 
-  public int getCategoriaId() {
+  public Integer getCategoriaId() {
     return categoriaId;
   }
 
-  public void setCategoriaId(int categoriaId) {
+  public void setCategoriaId(Integer categoriaId) {
     this.categoriaId = categoriaId;
   }
 

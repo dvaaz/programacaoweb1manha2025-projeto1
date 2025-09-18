@@ -4,6 +4,7 @@ import com.senac.games.dto.request.JogoDTORequest;
 import com.senac.games.dto.request.JogoDTOUpdateStatusRequest;
 import com.senac.games.dto.response.JogoDTOResponse;
 import com.senac.games.dto.response.JogoDTOUpdateStatusResponse;
+import com.senac.games.entities.Categoria;
 import com.senac.games.entities.Jogo;
 import com.senac.games.repository.CategoriaRepository;
 import com.senac.games.repository.JogoRepository;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,25 +32,60 @@ public class JogoService {
     }
 
     public JogoDTOResponse criarJogo(JogoDTORequest jogoDTORequest) {
-        Jogo jogo = modelMapper.map(jogoDTORequest, Jogo.class);
+      Categoria categoria = this.categoriaRepository.obterCategoriaPorID(jogoDTORequest.getCategoriaId());
+
+      if (categoria != null) {
+        Jogo jogo = new Jogo();
+        jogo.setCategoria(categoria);
+        jogo.setNome(jogoDTORequest.getNome());
+        jogo.setStatus(jogoDTORequest.getStatus());
 
         Jogo jogoSave = this.jogoRepository.save(jogo);
-        JogoDTOResponse jogoDTOResponse = modelMapper.map(jogoSave, JogoDTOResponse.class);
 
-        return jogoDTOResponse;
+        JogoDTOResponse dtoResponse = new JogoDTOResponse();
+        dtoResponse.setId(jogo.getId());
+        dtoResponse.setIdCategoria(jogo.getCategoria().getId());
+        dtoResponse.setNome(jogo.getNome());
+        dtoResponse.setStatus(jogo.getStatus());
+        return dtoResponse;
+      }
+        return null;
     }
 
-    public List<Jogo> listarJogos() { return this.jogoRepository.listarJogos(); }
+    public List<JogoDTOResponse> listarJogos() {
+      List<Jogo> jogos = this.jogoRepository.listarJogos();
+      List<JogoDTOResponse> listaJogosResponse = new ArrayList<>();
+      for (Jogo jogo : jogos) {
+        JogoDTOResponse dtoResponse = new JogoDTOResponse();
+        dtoResponse.setId(jogo.getId());
+        dtoResponse.setIdCategoria(jogo.getCategoria().getId());
+        dtoResponse.setNome(jogo.getNome());
+        dtoResponse.setStatus(jogo.getStatus());
+        listaJogosResponse.add(dtoResponse);
 
-    public Jogo listarJogoPorId(Integer jogoId) {
-        Jogo jogo = this.jogoRepository.obterJogoPorID(jogoId);
+      } return listaJogosResponse;
+
+    }
+
+  public Jogo buscarJogoPorId(Integer jogoId) {
+    Jogo jogo = this.jogoRepository.obterJogoPorID(jogoId);
+    return jogo;
+  }
+
+    public JogoDTOResponse listarJogoPorId(Integer jogoId) {
+        Jogo jogo = buscarJogoPorId(jogoId);
         if (jogo != null) {
-            return this.jogoRepository.obterJogoPorID(jogoId);
+            JogoDTOResponse dtoResponse = new JogoDTOResponse();
+            dtoResponse.setId(jogo.getId());
+            dtoResponse.setIdCategoria(jogo.getCategoria().getId());
+            dtoResponse.setNome(jogo.getNome());
+            dtoResponse.setStatus(jogo.getStatus());
+            return dtoResponse;
         } else return null;
     }
 
     public JogoDTOUpdateStatusResponse atualizarStatusJogo(Integer jogoId, JogoDTOUpdateStatusRequest jogoDTOUpdateStatusRequest) {
-        Jogo jogo = this.listarJogoPorId(jogoId);
+        Jogo jogo = this.buscarJogoPorId(jogoId);
         if (jogo != null) {
             jogo.setStatus(jogoDTOUpdateStatusRequest.getStatus());
 
@@ -59,7 +96,7 @@ public class JogoService {
 
     public JogoDTOResponse atualizarJogo(Integer jogoId, JogoDTORequest jogoDTORequest) {
 
-        Jogo jogo = this.listarJogoPorId(jogoId);
+        Jogo jogo = this.buscarJogoPorId(jogoId);
         if (jogo != null) {
             jogo.setNome(jogoDTORequest.getNome());
             jogo.setStatus(jogoDTORequest.getStatus());
