@@ -4,7 +4,7 @@ public class ParticipanteDTOResponse {
   private Integer id;
   private String nome;
   private String email;
-  private String indentificacao;
+  private String identificacao;
   private String endereco;
   private int status;
 
@@ -32,12 +32,12 @@ public class ParticipanteDTOResponse {
     this.email = email;
   }
 
-  public String getIndentificacao() {
-    return indentificacao;
+  public String getIdentificacao() {
+    return identificacao;
   }
 
-  public void setIndentificacao(String indentificacao) {
-    this.indentificacao = indentificacao;
+  public void setIdentificacao(String identificacao) {
+    this.identificacao = identificacao;
   }
 
   public String getEndereco() {

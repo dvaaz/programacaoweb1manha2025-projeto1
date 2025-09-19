@@ -28,69 +28,68 @@ public class Participante {
     private int status;
     @OneToMany(mappedBy = "participante")
     private Set<Inscricao> inscricoes;
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public String getNome() {
-        return nome;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+  public String getNome() {
+    return nome;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public String getIdentificacao() {
-        return identificacao;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public void setIdentificacao(String identificacao) {
-        this.identificacao = identificacao;
-    }
+  public String getIdentificacao() {
+    return identificacao;
+  }
 
-    public String getEndereco() {
-        return endereco;
-    }
+  public void setIdentificacao(String identificacao) {
+    this.identificacao = identificacao;
+  }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+  public String getEndereco() {
+    return endereco;
+  }
 
-    public File getFoto_perfil() {
-        return foto_perfil;
-    }
+  public void setEndereco(String endereco) {
+    this.endereco = endereco;
+  }
 
-    public void setFoto_perfil(File foto_perfil) {
-        this.foto_perfil = foto_perfil;
-    }
+  public File getFoto_perfil() {
+    return foto_perfil;
+  }
 
-    public int getStatus() {
-        return status;
-    }
+  public void setFoto_perfil(File foto_perfil) {
+    this.foto_perfil = foto_perfil;
+  }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+  public int getStatus() {
+    return status;
+  }
 
+  public void setStatus(int status) {
+    this.status = status;
+  }
 
+  public Set<Inscricao> getInscricoes() {
+    return inscricoes;
+  }
 
-    public Set<Inscricao> getInscricoes() {
-        return inscricoes;
-    }
-
-    public void setInscricoes(Set<Inscricao> inscricoes) {
-        this.inscricoes = inscricoes;
-    }
+  public void setInscricoes(Set<Inscricao> inscricoes) {
+    this.inscricoes = inscricoes;
+  }
 }
