@@ -55,7 +55,7 @@ public class ParticipanteService {
         participante.setEmail(participanteDTO.getEmail());
         participante.setEndereco(participanteDTO.getEndereco());
         participante.setStatus(participanteDTO.getStatus());
-        participante.setIdentificacao(participanteDTO.getIndentificacao());
+        participante.setIdentificacao(participanteDTO.getIdentificacao());
         */
 
         //Salva o Participante no repository utilizando o método .save
@@ -67,7 +67,7 @@ public class ParticipanteService {
         participanteDTOResponse.setNome(participanteSave.getNome());
         participanteDTOResponse.setEmail(participanteSave.getEmail());
         participanteDTOResponse.setEndereco(participanteSave.getEndereco());
-        participanteDTOResponse.setIndentificacao(participanteSave.getIdentificacao());
+        participanteDTOResponse.setIdentificacao(participanteSave.getIdentificacao());
         participanteDTOResponse.setStatus(participanteSave.getStatus());
         */
 

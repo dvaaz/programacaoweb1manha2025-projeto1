@@ -9,7 +9,7 @@ public class ParticipanteDTORequest {
     @Email(message="Insira um email valido")
     private String email;
     @NotBlank(message = "Preencha uma identificacao")
-    private String indentificacao;
+    private String identificacao;
     @NotBlank(message = "O campo não pode estar vazio")
     @Size(min=5, max=255, message= "O endereco tem de ter entre 5 e 255 caracteres")
     private String endereco;
@@ -34,12 +34,12 @@ public class ParticipanteDTORequest {
     this.email = email;
   }
 
-  public String getIndentificacao() {
-    return indentificacao;
+  public String getIdentificacao() {
+    return identificacao;
   }
 
-  public void setIndentificacao(String indentificacao) {
-    this.indentificacao = indentificacao;
+  public void setIdentificacao(String identificacao) {
+    this.identificacao = identificacao;
   }
 
   public String getEndereco() {
