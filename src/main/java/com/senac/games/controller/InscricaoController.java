@@ -100,8 +100,7 @@ public class InscricaoController {
     @DeleteMapping("/remover/{inscricaoId}")
     @Operation(summary = "Remover Inscricao", description = "Endpoint para a remoção logica de inscricao")
     public ResponseEntity removerInscricao(
-            @Valid @PathVariable("inscricaoId") Integer inscricaoId,
-            @RequestBody InscricaoDTORequest inscricaoDTORequest
+            @Valid @PathVariable("inscricaoId") Integer inscricaoId
     ){
         this.inscricaoService.apagarInscricao(inscricaoId);
         return ResponseEntity.noContent().build();

@@ -46,43 +46,43 @@ public class ParticipanteService {
 
 
   @Transactional
-    public ParticipanteDTOResponse criarParticipante(ParticipanteDTORequest participanteDTORequest) {
+    public ParticipanteDTOResponse criarParticipante(ParticipanteDTORequest dtoRequest) {
         // Mapper recebe o DTO de um tipo e o transforma em Participante
-        Participante participante = modelMapper.map(participanteDTORequest, Participante.class);
+        Participante participante = modelMapper.map(dtoRequest, Participante.class);
 
 
-       participante.setNome(participanteDTORequest.getNome());
-        participante.setEmail(participanteDTORequest.getEmail());
-        participante.setEndereco(participanteDTORequest.getEndereco());
-        participante.setStatus(participanteDTORequest.getStatus());
-        participante.setIdentificacao(participanteDTORequest.getIdentificacao());
+       participante.setNome(dtoRequest.getNome());
+        participante.setEmail(dtoRequest.getEmail());
+        participante.setEndereco(dtoRequest.getEndereco());
+        participante.setStatus(dtoRequest.getStatus());
+        participante.setIdentificacao(dtoRequest.getIdentificacao());
 
 
         //Salva o Participante no repository utilizando o método .save
         Participante participanteSave = this.participanteRepository.save(participante);
 
 
-        ParticipanteDTOResponse participanteDTOResponse = new ParticipanteDTOResponse();
-        participanteDTOResponse.setId(participanteSave.getId());
-        participanteDTOResponse.setNome(participanteSave.getNome());
-        participanteDTOResponse.setEmail(participanteSave.getEmail());
-        participanteDTOResponse.setEndereco(participanteSave.getEndereco());
-        participanteDTOResponse.setIdentificacao(participanteSave.getIdentificacao());
-        participanteDTOResponse.setStatus(participanteSave.getStatus());
+        ParticipanteDTOResponse dtoResponse = new ParticipanteDTOResponse();
+        dtoResponse.setId(participanteSave.getId());
+        dtoResponse.setNome(participanteSave.getNome());
+        dtoResponse.setEmail(participanteSave.getEmail());
+        dtoResponse.setEndereco(participanteSave.getEndereco());
+        dtoResponse.setIdentificacao(participanteSave.getIdentificacao());
+        dtoResponse.setStatus(participanteSave.getStatus());
 
 
 
-        return participanteDTOResponse;
+        return dtoResponse;
     }
 
   @Transactional
-  public ParticipanteDTOResponse atualizarParticipante(Integer participanteId, ParticipanteDTORequest participanteDTORequest) {
+  public ParticipanteDTOResponse atualizarParticipante(Integer participanteId, ParticipanteDTORequest dtoRequest) {
     // antes de atualizar verifica se o registro existe
     Participante participante = this.listarPorParticipanteId(participanteId);
 
     // se encontrar o registro a ser atualizado
     if (participante != null) {
-      modelMapper.map(participanteDTORequest, participante);
+      modelMapper.map(dtoRequest, participante);
       Participante tempResponse = participanteRepository.save(participante);
       return modelMapper.map(tempResponse, ParticipanteDTOResponse.class);
 
@@ -92,14 +92,14 @@ public class ParticipanteService {
   }
 
   @Transactional
-  public StatusUpdateDTOResponse atualizarStatusParticipante(Integer participanteId, StatusUpdateDTORequest participanteDTOUpdateRequest) {
+  public StatusUpdateDTOResponse atualizarStatusParticipante(Integer participanteId, StatusUpdateDTORequest dtoUpdateRequest) {
     //antes de atualizar busca se existe o registro a ser atualizar
     Participante participante = this.listarPorParticipanteId(participanteId);
 
     //se encontra o registro a ser atualizado
     if (participante != null) {
       //atualizamos unicamente o campo de status
-      participante.setStatus(participanteDTOUpdateRequest.getStatus());
+      participante.setStatus(dtoUpdateRequest.getStatus());
 
       //com o objeto no formato correto tipo "participante" o comando "save" salva
       // no banco de dados o objeto atualizado

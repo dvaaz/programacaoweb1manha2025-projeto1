@@ -2,6 +2,7 @@ package com.senac.games.entities;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name="patrocinador")
 public class Patrocinador {

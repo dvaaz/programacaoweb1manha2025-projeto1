@@ -75,8 +75,7 @@ public class CategoriaController {
     @DeleteMapping("/remover/{categoriaId}")
     @Operation(summary = "Remover Categoria", description = "Endpoint para a remoção logica de categoria")
     public ResponseEntity removerCategoria(
-            @Valid @PathVariable("categoriaId") Integer categoriaId,
-            @RequestBody CategoriaDTORequest categoriaDTORequest
+            @Valid @PathVariable("categoriaId") Integer categoriaId
     ){
         this.categoriaService.apagarCategoria(categoriaId);
         return ResponseEntity.noContent().build();

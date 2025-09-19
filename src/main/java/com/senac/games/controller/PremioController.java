@@ -76,8 +76,7 @@ public class PremioController {
     @DeleteMapping("/remover/{premioId}")
     @Operation(summary = "Remover Premio", description = "Endpoint para a remoção logica de premio")
     public ResponseEntity removerPremio(
-            @Valid @PathVariable("premioId") Integer premioId,
-            @RequestBody PremioDTORequest premioDTORequest
+            @Valid @PathVariable("premioId") Integer premioId
     ){
         this.premioService.apagarPremio(premioId);
         return ResponseEntity.noContent().build();

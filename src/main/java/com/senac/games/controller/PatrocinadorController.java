@@ -75,8 +75,7 @@ public class PatrocinadorController {
     @DeleteMapping("/remover/{patrocinadorId}")
     @Operation(summary = "Remover Patrocinador", description = "Endpoint para a remoção logica de patrocinador")
     public ResponseEntity removerPatrocinador(
-            @Valid @PathVariable("patrocinadorId") Integer patrocinadorId,
-            @RequestBody PatrocinadorDTORequest patrocinadorDTORequest
+            @Valid @PathVariable("patrocinadorId") Integer patrocinadorId
     ){
         this.patrocinadorService.apagarPatrocinador(patrocinadorId);
         return ResponseEntity.noContent().build();

@@ -68,8 +68,7 @@ public class JogoController {
     @DeleteMapping("/remover/{jogoId}")
     @Operation(summary = "Remover Jogo", description = "Endpoint para a remoção logica de jogo")
     public ResponseEntity removerJogo(
-            @Valid @PathVariable("jogoId") Integer jogoId,
-            @RequestBody JogoDTORequest jogoDTORequest
+            @Valid @PathVariable("jogoId") Integer jogoId
     ){
         this.jogoService.apagarJogo(jogoId);
         return ResponseEntity.noContent().build();
