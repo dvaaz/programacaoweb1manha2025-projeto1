@@ -1,14 +1,17 @@
 package com.senac.games.service;
 
-import com.senac.games.dto.request.JogoDTORequest;
+import com.senac.games.dto.request.jogo.JogoDTORequest;
 import com.senac.games.dto.request.StatusUpdateDTORequest;
-import com.senac.games.dto.response.JogoDTOResponse;
+import com.senac.games.dto.request.jogo.JogoUpdateCategoriaDTORequest;
+import com.senac.games.dto.request.jogo.JogoUpdateDTORequest;
+import com.senac.games.dto.response.jogo.JogoDTOResponse;
 import com.senac.games.dto.response.StatusUpdateDTOResponse;
+import com.senac.games.dto.response.jogo.JogoUpdateCategoriaDTOResponse;
+import com.senac.games.dto.response.jogo.JogoUpdateDTOResponse;
 import com.senac.games.entities.Categoria;
 import com.senac.games.entities.Jogo;
 import com.senac.games.repository.CategoriaRepository;
 import com.senac.games.repository.JogoRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -94,21 +97,42 @@ public class JogoService {
         } else return null;
     }
 
-    public JogoDTOResponse atualizarJogo(Integer jogoId, JogoDTORequest jogoDTORequest) {
+    public JogoUpdateDTOResponse atualizarNomeJogo(Integer jogoId, JogoUpdateDTORequest dtoRequest) {
 
         Jogo jogo = this.buscarJogoPorId(jogoId);
         if (jogo != null) {
-            jogo.setNome(jogoDTORequest.getNome());
-            jogo.setStatus(jogoDTORequest.getStatus());
-            jogo.setCategoria(
-                categoriaRepository.findById(jogoDTORequest.getCategoriaId()).orElseThrow(()->new IllegalArgumentException("Categoria não encontrada com id: "+jogoDTORequest.getCategoriaId()))
-                );
+            jogo.setNome(dtoRequest.getNome());
             Jogo jogoSave = jogoRepository.save(jogo);
-            return modelMapper.map(jogoSave, JogoDTOResponse.class);
+
+            JogoUpdateDTOResponse dtoResponse = new JogoUpdateDTOResponse();
+            dtoResponse.setId(jogoSave.getId());
+            dtoResponse.setNome(jogo.getNome());
+
+
+            return dtoResponse;
         } else{
             // Error 400 caso tente atualiza jogo inexistente.
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    public JogoUpdateCategoriaDTOResponse alterarCategoria(Integer jogoId, JogoUpdateCategoriaDTORequest dtoRequest) {
+      Categoria categoria = categoriaRepository.obterCategoriaPorID(dtoRequest.getCategoriaId());
+      if (categoria == null) {
+          throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+      }
+      Jogo jogo = this.buscarJogoPorId(jogoId);
+      if (jogo != null) {
+        jogo.setCategoria(categoria);
+        jogoRepository.save(jogo);
+
+        JogoUpdateCategoriaDTOResponse dtoResponse = new JogoUpdateCategoriaDTOResponse();
+        dtoResponse.setCategoriaId(jogo.getCategoria().getId());
+        dtoResponse.setId(jogo.getId());
+
+        return dtoResponse;
+      }
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
 
     public void apagarJogo(Integer jogoId){

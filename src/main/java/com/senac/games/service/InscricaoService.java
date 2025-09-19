@@ -18,7 +18,9 @@ import com.senac.games.repository.JogoRepository;
 import com.senac.games.repository.ParticipanteRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -41,11 +43,11 @@ public class InscricaoService {
     public InscricaoDTOResponse criarInscricao(InscricaoDTORequest dtoRequest) {
       Participante participante = participanteRepository.listarParticipantePorID(dtoRequest.getParticipanteId());
       if (participante == null) {
-        throw new IllegalArgumentException("Participante nao encontrado");
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
       }
       Jogo jogo = jogoRepository.obterJogoPorID(dtoRequest.getJogoId());
       if (jogo == null) {
-        throw new IllegalArgumentException("Jogo nao encontrado");
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
       }
       Inscricao inscricao = new Inscricao();
       inscricao.setParticipante(participante);
@@ -83,10 +85,10 @@ public class InscricaoService {
         } else return null;
     }
 
-    public InscricaoUpdateParticipanteDTOResponse alterarParticipanteInscricao(Integer inscricaoId, InscricaoUpdateParticipanteDTORequest dtoRequest) throws IllegalArgumentException {
+    public InscricaoUpdateParticipanteDTOResponse alterarParticipanteInscricao(Integer inscricaoId, InscricaoUpdateParticipanteDTORequest dtoRequest) {
       Participante participante = participanteRepository.listarParticipantePorID(dtoRequest.getParticipanteId());
       if (participante == null) {
-        throw new IllegalArgumentException("Id de participante nao encontrado.");
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
       }
       Inscricao inscricao = this.listarInscricaoPorId(inscricaoId);
       if (inscricao != null && participante != null) {
@@ -100,13 +102,13 @@ public class InscricaoService {
         dtoResponse.setParticipanteId(participante.getId());
         return dtoResponse;
       }
-      throw new IllegalArgumentException("Id de inscricao nao encontrado");
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
 
     public InscricaoUpdateJogoDTOResponse alterarJogoInscricao(Integer inscricaoId, InscricaoUpdateJogoDTORequest dtoRequest) {
       Jogo jogo = jogoRepository.obterJogoPorID(dtoRequest.getIdJogo());
       if (jogo == null) {
-        throw new IllegalArgumentException("Id de jogo nao encontrado.");
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
       }
       Inscricao inscricao = this.listarInscricaoPorId(inscricaoId);
       if (inscricao != null && jogo != null) {
@@ -120,12 +122,12 @@ public class InscricaoService {
         dtoResponse.setJogoId(jogo.getId());
         return dtoResponse;
       }
-      throw new IllegalArgumentException("Id de inscricao nao encontrado");
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
 
 
     public InscricaoUpdateDTOResponse atualizarInscricao(
-        Integer inscricaoId, InscricaoUpdateDTORequest dtoRequest) throws IllegalArgumentException {
+        Integer inscricaoId, InscricaoUpdateDTORequest dtoRequest)  {
       Inscricao inscricao = listarInscricaoPorId(inscricaoId);
         if (inscricao != null) {
           Inscricao inscricaoSave = new Inscricao();
@@ -140,7 +142,7 @@ public class InscricaoService {
 
           return dtoResponse;
 
-        } throw new IllegalArgumentException("Id de inscricao nao encontrado.");
+        }             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
 
     public void apagarInscricao(Integer inscricaoId){

@@ -1,6 +1,12 @@
 package com.senac.games.dto.request;
 
-import jakarta.validation.constraints.*;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 public class PremioDTORequest {
     @NotBlank(message = "O campo não pode estar vazio")

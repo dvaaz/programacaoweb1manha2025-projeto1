@@ -1,6 +1,5 @@
 package com.senac.games.dto.request;
 
-import jakarta.validation.constraints.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
