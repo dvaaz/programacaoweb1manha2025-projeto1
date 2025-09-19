@@ -9,7 +9,7 @@ public class Premio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "premio_id")
-    private int id;
+    private Integer id;
     @Column(name = "premio_descricao")
     private String descricao;
     @Column(name = "premio_ordem_premiacao")
@@ -20,11 +20,11 @@ public class Premio {
     private int status;
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

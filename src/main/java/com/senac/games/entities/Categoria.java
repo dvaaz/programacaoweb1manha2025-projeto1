@@ -12,7 +12,7 @@ public class Categoria {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "categoria_id")
-    private int id;
+    private Integer id;
     @Column(name = "categoria_nome")
     private String nome;
     @Column(name = "categoria_status")
@@ -28,11 +28,11 @@ public class Categoria {
         this.jogos = jogos;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

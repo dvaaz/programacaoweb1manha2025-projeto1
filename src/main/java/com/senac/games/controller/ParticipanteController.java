@@ -1,9 +1,9 @@
 package com.senac.games.controller;
 
 import com.senac.games.dto.request.ParticipanteDTORequest;
-import com.senac.games.dto.request.ParticipanteDTOUpdateStatusRequest;
+import com.senac.games.dto.request.StatusUpdateDTORequest;
 import com.senac.games.dto.response.ParticipanteDTOResponse;
-import com.senac.games.dto.response.ParticipanteDTOUpdateStatusResponse;
+import com.senac.games.dto.response.StatusUpdateDTOResponse;
 import com.senac.games.entities.Participante;
 import com.senac.games.service.ParticipanteService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -82,20 +82,20 @@ public class ParticipanteController {
 
     @PatchMapping("/atualizarStatus/{participanteId}")
     @Operation(summary = "Atualizar campo status do participante", description = "Endpoint para atualizar o status do participante")
-    public ResponseEntity<ParticipanteDTOUpdateStatusResponse> atualizarStatusParticipante(
+    public ResponseEntity<StatusUpdateDTOResponse> atualizarStatusParticipante(
         @Valid
         @PathVariable("participanteId") Integer participanteId,
-        @RequestBody ParticipanteDTOUpdateStatusRequest participanteDTOUpdateStatusRequest){
+        @RequestBody StatusUpdateDTORequest statusUpdateDTORequest){
 
-        return  ResponseEntity.ok(participanteService.atualizarStatusParticipante(participanteId, participanteDTOUpdateStatusRequest));
+        return  ResponseEntity.ok(participanteService.atualizarStatusParticipante(participanteId, statusUpdateDTORequest));
     }
 
-    @DeleteMapping("/remover/{participanteID}")
+    @DeleteMapping("/remover/{participanteId}")
     @Operation(summary = "Remove participante", description = "Endpoint para remover logicamente o participante")
     public ResponseEntity apagarParticipante(
         @Valid
-        @PathVariable("participanteId") Integer participanteId,
-        @RequestBody ParticipanteDTORequest participanteDTORequest){
+        @PathVariable("participanteId") Integer participanteId
+        ){
         this.participanteService.apagarParticipante(participanteId);
         return  ResponseEntity.noContent().build();
     }

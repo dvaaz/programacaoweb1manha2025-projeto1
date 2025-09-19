@@ -1,9 +1,9 @@
 package com.senac.games.service;
 
 import com.senac.games.dto.request.PatrocinadorDTORequest;
-import com.senac.games.dto.request.PatrocinadorDTOUpdateStatusRequest;
+import com.senac.games.dto.request.StatusUpdateDTORequest;
 import com.senac.games.dto.response.PatrocinadorDTOResponse;
-import com.senac.games.dto.response.PatrocinadorDTOUpdateStatusResponse;
+import com.senac.games.dto.response.StatusUpdateDTOResponse;
 import com.senac.games.entities.Patrocinador;
 import com.senac.games.repository.PatrocinadorRepository;
 import org.modelmapper.ModelMapper;
@@ -41,13 +41,13 @@ public class PatrocinadorService {
         } else return null;
     }
 
-    public PatrocinadorDTOUpdateStatusResponse atualizarStatusPatrocinador(Integer patrocinadorId, PatrocinadorDTOUpdateStatusRequest patrocinadorDTOUpdateStatusRequest) {
+    public StatusUpdateDTOResponse atualizarStatusPatrocinador(Integer patrocinadorId, StatusUpdateDTORequest statusUpdateDTORequest) {
         Patrocinador patrocinador = this.listarPatrocinadorPorId(patrocinadorId);
         if (patrocinador != null) {
-            patrocinador.setStatus(patrocinadorDTOUpdateStatusRequest.getStatus());
+            patrocinador.setStatus(statusUpdateDTORequest.getStatus());
 
             Patrocinador tempResponse = patrocinadorRepository.save(patrocinador);
-            return modelMapper.map(tempResponse, PatrocinadorDTOUpdateStatusResponse.class);
+            return modelMapper.map(tempResponse, StatusUpdateDTOResponse.class);
         } else return null;
     }
 

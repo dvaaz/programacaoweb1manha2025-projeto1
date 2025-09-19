@@ -1,8 +1,6 @@
 package com.senac.games.dto.response;
 
-
-public class InscricaoDTOUpdateStatusResponse {
-
+public class StatusUpdateDTOResponse {
   private Integer id;
 
   private int status;

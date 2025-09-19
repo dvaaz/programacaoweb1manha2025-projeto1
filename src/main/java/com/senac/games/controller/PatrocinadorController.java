@@ -1,9 +1,9 @@
 package com.senac.games.controller;
 
 import com.senac.games.dto.request.PatrocinadorDTORequest;
-import com.senac.games.dto.request.PatrocinadorDTOUpdateStatusRequest;
+import com.senac.games.dto.request.StatusUpdateDTORequest;
 import com.senac.games.dto.response.PatrocinadorDTOResponse;
-import com.senac.games.dto.response.PatrocinadorDTOUpdateStatusResponse;
+import com.senac.games.dto.response.StatusUpdateDTOResponse;
 import com.senac.games.entities.Patrocinador;
 import com.senac.games.service.PatrocinadorService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -64,12 +64,12 @@ public class PatrocinadorController {
 
     @PatchMapping("/atualizarStatus/{patrocinadorId}")
     @Operation(summary = "Alterar Status da patrocinador", description="Endpoint para alterar o status da patrocinador")
-    public ResponseEntity<PatrocinadorDTOUpdateStatusResponse> atualizarStatus(
+    public ResponseEntity<StatusUpdateDTOResponse> atualizarStatus(
             @Valid
             @PathVariable("patrocinadorId") Integer patrocinadorId,
-            @RequestBody PatrocinadorDTOUpdateStatusRequest patrocinadorDTOUpdateStatusRequest
+            @RequestBody StatusUpdateDTORequest statusUpdateDTORequest
     ){
-        return ResponseEntity.ok(patrocinadorService.atualizarStatusPatrocinador(patrocinadorId, patrocinadorDTOUpdateStatusRequest));
+        return ResponseEntity.ok(patrocinadorService.atualizarStatusPatrocinador(patrocinadorId, statusUpdateDTORequest));
     }
 
     @DeleteMapping("/remover/{patrocinadorId}")

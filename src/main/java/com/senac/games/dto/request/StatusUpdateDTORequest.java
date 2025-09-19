@@ -5,11 +5,11 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
-public class ParticipanteDTOUpdateStatusRequest {
-    @NotNull
-    @NotEmpty
-    @Min(1)
-    @Max(2)
+public class StatusUpdateDTORequest {
+  @NotNull
+  @NotEmpty
+  @Min(1)
+  @Max(2)
   private Integer status;
 
   public Integer getStatus() {
@@ -19,6 +19,4 @@ public class ParticipanteDTOUpdateStatusRequest {
   public void setStatus(int status) {
     this.status = status;
   }
-
-
 }

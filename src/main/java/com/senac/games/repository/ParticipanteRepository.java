@@ -23,5 +23,5 @@ public interface ParticipanteRepository extends JpaRepository<Participante,Integ
   List<Participante> listarParticipantes();
 
   @Query("SELECT p FROM Participante p WHERE p.id = :id AND p.status>=0")
-  Participante obterParticipantePorID(@Param("id") Integer participanteId);
+  Participante listarParticipantePorID(@Param("id") Integer participanteId);
 }

@@ -1,4 +1,4 @@
-package com.senac.games.dto.request;
+package com.senac.games.dto.request.inscricao;
 
 import jakarta.validation.constraints.*;
 
@@ -9,7 +9,7 @@ public class InscricaoDTORequest {
     private Date data;
   @NotNull
   @NotEmpty
-    private int participanteID;
+    private int participanteId;
   @NotNull
   @NotEmpty
     private int jogoId;
@@ -27,20 +27,12 @@ public class InscricaoDTORequest {
     this.data = data;
   }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-  public int getParticipanteID() {
-    return participanteID;
+  public int getParticipanteId() {
+    return participanteId;
   }
 
-  public void setParticipanteID(int participanteID) {
-    this.participanteID = participanteID;
+  public void setParticipanteId(int participanteId) {
+    this.participanteId = participanteId;
   }
 
   public int getJogoId() {
@@ -49,5 +41,13 @@ public class InscricaoDTORequest {
 
   public void setJogoId(int jogoId) {
     this.jogoId = jogoId;
+  }
+
+  public Integer getStatus() {
+    return status;
+  }
+
+  public void setStatus(Integer status) {
+    this.status = status;
   }
 }

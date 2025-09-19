@@ -1,9 +1,9 @@
 package com.senac.games.controller;
 
 import com.senac.games.dto.request.JogoDTORequest;
-import com.senac.games.dto.request.JogoDTOUpdateStatusRequest;
+import com.senac.games.dto.request.StatusUpdateDTORequest;
 import com.senac.games.dto.response.JogoDTOResponse;
-import com.senac.games.dto.response.JogoDTOUpdateStatusResponse;
+import com.senac.games.dto.response.StatusUpdateDTOResponse;
 import com.senac.games.entities.Jogo;
 import com.senac.games.service.JogoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -57,12 +57,12 @@ public class JogoController {
 
     @PatchMapping("/atualizarStatus/{jogoId}")
     @Operation(summary = "Alterar Status da jogo", description="Endpoint para alterar o status da jogo")
-    public ResponseEntity<JogoDTOUpdateStatusResponse> atualizarStatus(
+    public ResponseEntity<StatusUpdateDTOResponse> atualizarStatus(
             @Valid
             @PathVariable("jogoId") Integer jogoId,
-            @RequestBody JogoDTOUpdateStatusRequest jogoDTOUpdateStatusRequest
+            @RequestBody StatusUpdateDTORequest statusUpdateDTORequest
     ){
-        return ResponseEntity.ok(jogoService.atualizarStatusJogo(jogoId, jogoDTOUpdateStatusRequest));
+        return ResponseEntity.ok(jogoService.atualizarStatusJogo(jogoId, statusUpdateDTORequest));
     }
 
     @DeleteMapping("/remover/{jogoId}")

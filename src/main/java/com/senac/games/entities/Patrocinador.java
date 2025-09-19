@@ -9,7 +9,7 @@ public class Patrocinador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "patrocinador_id")
-    private int id;
+    private Integer id;
     @Column(name = "patrocinador_nome")
     private String nome;
     @Column(name = "patrocinador_representante_nome")
@@ -17,11 +17,11 @@ public class Patrocinador {
     @Column(name = "patrocinador_status")
     private int status;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

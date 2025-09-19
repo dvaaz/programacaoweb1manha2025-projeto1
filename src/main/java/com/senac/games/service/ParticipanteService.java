@@ -2,8 +2,8 @@ package com.senac.games.service;
 
 import com.senac.games.dto.request.ParticipanteDTORequest;
 import com.senac.games.dto.response.ParticipanteDTOResponse;
-import com.senac.games.dto.request.ParticipanteDTOUpdateStatusRequest;
-import com.senac.games.dto.response.ParticipanteDTOUpdateStatusResponse;
+import com.senac.games.dto.request.StatusUpdateDTORequest;
+import com.senac.games.dto.response.StatusUpdateDTOResponse;
 import com.senac.games.entities.Participante;
 import com.senac.games.repository.ParticipanteRepository;
 import jakarta.transaction.Transactional;
@@ -38,9 +38,9 @@ public class ParticipanteService {
     }
 
     public Participante obterParticipantePorID(Integer participanteId) {
-      Participante participante = this.participanteRepository.obterParticipantePorID(participanteId);
+      Participante participante = this.participanteRepository.listarParticipantePorID(participanteId);
       if (participante != null) {
-        return this.participanteRepository.obterParticipantePorID(participanteId);
+        return this.participanteRepository.listarParticipantePorID(participanteId);
       } else return null;
     }
 
@@ -51,25 +51,25 @@ public class ParticipanteService {
         Participante participante = modelMapper.map(participanteDTORequest, Participante.class);
 
 
-       /* participante.setNome(participanteDTO.getNome());
-        participante.setEmail(participanteDTO.getEmail());
-        participante.setEndereco(participanteDTO.getEndereco());
-        participante.setStatus(participanteDTO.getStatus());
-        participante.setIdentificacao(participanteDTO.getIdentificacao());
-        */
+       participante.setNome(participanteDTORequest.getNome());
+        participante.setEmail(participanteDTORequest.getEmail());
+        participante.setEndereco(participanteDTORequest.getEndereco());
+        participante.setStatus(participanteDTORequest.getStatus());
+        participante.setIdentificacao(participanteDTORequest.getIdentificacao());
+
 
         //Salva o Participante no repository utilizando o método .save
         Participante participanteSave = this.participanteRepository.save(participante);
-        ParticipanteDTOResponse participanteDTOResponse = modelMapper.map(participanteSave, ParticipanteDTOResponse.class);
 
-        /* ParticipanteDTOResponse participanteDTOResponse = new ParticipanteDTOResponse();
+
+        ParticipanteDTOResponse participanteDTOResponse = new ParticipanteDTOResponse();
         participanteDTOResponse.setId(participanteSave.getId());
         participanteDTOResponse.setNome(participanteSave.getNome());
         participanteDTOResponse.setEmail(participanteSave.getEmail());
         participanteDTOResponse.setEndereco(participanteSave.getEndereco());
         participanteDTOResponse.setIdentificacao(participanteSave.getIdentificacao());
         participanteDTOResponse.setStatus(participanteSave.getStatus());
-        */
+
 
 
         return participanteDTOResponse;
@@ -92,7 +92,7 @@ public class ParticipanteService {
   }
 
   @Transactional
-  public ParticipanteDTOUpdateStatusResponse atualizarStatusParticipante(Integer participanteId, ParticipanteDTOUpdateStatusRequest participanteDTOUpdateRequest) {
+  public StatusUpdateDTOResponse atualizarStatusParticipante(Integer participanteId, StatusUpdateDTORequest participanteDTOUpdateRequest) {
     //antes de atualizar busca se existe o registro a ser atualizar
     Participante participante = this.listarPorParticipanteId(participanteId);
 
@@ -104,7 +104,7 @@ public class ParticipanteService {
       //com o objeto no formato correto tipo "participante" o comando "save" salva
       // no banco de dados o objeto atualizado
       Participante tempResponse = participanteRepository.save(participante);
-      return modelMapper.map(tempResponse, ParticipanteDTOUpdateStatusResponse.class);
+      return modelMapper.map(tempResponse, StatusUpdateDTOResponse.class);
     }
     else{
       return null;

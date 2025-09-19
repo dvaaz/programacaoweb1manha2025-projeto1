@@ -1,9 +1,9 @@
 package com.senac.games.service;
 
 import com.senac.games.dto.request.CategoriaDTORequest;
-import com.senac.games.dto.request.CategoriaDTOUpdateStatusRequest;
+import com.senac.games.dto.request.StatusUpdateDTORequest;
 import com.senac.games.dto.response.CategoriaDTOResponse;
-import com.senac.games.dto.response.CategoriaDTOUpdateStatusResponse;
+import com.senac.games.dto.response.StatusUpdateDTOResponse;
 import com.senac.games.entities.Categoria;
 import com.senac.games.repository.CategoriaRepository;
 import org.modelmapper.ModelMapper;
@@ -41,13 +41,13 @@ public class CategoriaService {
         } else return null;
     }
 
-    public CategoriaDTOUpdateStatusResponse atualizarStatusCategoria(Integer categoriaId, CategoriaDTOUpdateStatusRequest categoriaDTOUpdateStatusRequest) {
+    public StatusUpdateDTOResponse atualizarStatusCategoria(Integer categoriaId, StatusUpdateDTORequest statusUpdateDTORequest) {
         Categoria categoria = this.listarCategoriaPorId(categoriaId);
         if (categoria != null) {
-            categoria.setStatus(categoriaDTOUpdateStatusRequest.getStatus());
+            categoria.setStatus(statusUpdateDTORequest.getStatus());
 
             Categoria tempResponse = categoriaRepository.save(categoria);
-            return modelMapper.map(tempResponse, CategoriaDTOUpdateStatusResponse.class);
+            return modelMapper.map(tempResponse, StatusUpdateDTOResponse.class);
         } else return null;
     }
 

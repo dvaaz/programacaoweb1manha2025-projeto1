@@ -1,9 +1,15 @@
 package com.senac.games.controller;
 
-import com.senac.games.dto.request.InscricaoDTORequest;
-import com.senac.games.dto.request.InscricaoDTOUpdateStatusRequest;
-import com.senac.games.dto.response.InscricaoDTOResponse;
-import com.senac.games.dto.response.InscricaoDTOUpdateStatusResponse;
+import com.senac.games.dto.request.inscricao.InscricaoDTORequest;
+import com.senac.games.dto.request.StatusUpdateDTORequest;
+import com.senac.games.dto.request.inscricao.InscricaoUpdateDTORequest;
+import com.senac.games.dto.request.inscricao.InscricaoUpdateJogoDTORequest;
+import com.senac.games.dto.request.inscricao.InscricaoUpdateParticipanteDTORequest;
+import com.senac.games.dto.response.inscricao.InscricaoDTOResponse;
+import com.senac.games.dto.response.StatusUpdateDTOResponse;
+import com.senac.games.dto.response.inscricao.InscricaoUpdateDTOResponse;
+import com.senac.games.dto.response.inscricao.InscricaoUpdateJogoDTOResponse;
+import com.senac.games.dto.response.inscricao.InscricaoUpdateParticipanteDTOResponse;
 import com.senac.games.entities.Inscricao;
 import com.senac.games.service.InscricaoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -55,22 +61,40 @@ public class InscricaoController {
 
     @PutMapping("/atualizar/{inscricaoId}")
     @Operation(summary = "Atualizar inscricao", description = "Endpoint para atualizar a inscricao")
-    public ResponseEntity<InscricaoDTOResponse> atualizarInscricao(
+    public ResponseEntity<InscricaoUpdateDTOResponse> atualizarInscricao(
             @Valid
             @PathVariable("inscricaoId") Integer inscricaoId,
-            @RequestBody InscricaoDTORequest inscricaoDTORequest
+            @RequestBody InscricaoUpdateDTORequest dtoRequest
     ) {
-        return ResponseEntity.ok(inscricaoService.atualizarInscricao(inscricaoId, inscricaoDTORequest));
+        return ResponseEntity.ok(inscricaoService.atualizarInscricao(inscricaoId, dtoRequest));
+    }
+
+    @PutMapping("/atualizar/jogo{inscricaoId}")
+    @Operation(summary="Atualizar jogo da inscricao", description = "Endpoint para atualizar o jogo na inscricao")
+    public ResponseEntity<InscricaoUpdateJogoDTOResponse> atualizarJogo(
+        @Valid @PathVariable("inscricaoId") Integer inscricaoId,
+        @RequestBody InscricaoUpdateJogoDTORequest dtoRequest
+    ){
+      return ResponseEntity.ok(inscricaoService.alterarJogoInscricao(inscricaoId, dtoRequest));
+    }
+
+    @PutMapping("atualizar/participante/{inscricaoId}")
+    @Operation(summary = "Atualizar participante da inscricao", description = "Endpoint para atualizar o participante na inscricao")
+    public ResponseEntity<InscricaoUpdateParticipanteDTOResponse> atualizarParticipante(
+        @Valid @PathVariable ("inscricaoId") Integer inscricaoId,
+        @RequestBody InscricaoUpdateParticipanteDTORequest dtoRequest
+    ) {
+      return ResponseEntity.ok(inscricaoService.alterarParticipanteInscricao(inscricaoId, dtoRequest));
     }
 
     @PatchMapping("/atualizarStatus/{inscricaoId}")
     @Operation(summary = "Alterar Status da inscricao", description="Endpoint para alterar o status da inscricao")
-    public ResponseEntity<InscricaoDTOUpdateStatusResponse> atualizarStatus(
+    public ResponseEntity<StatusUpdateDTOResponse> atualizarStatus(
             @Valid
             @PathVariable("inscricaoId") Integer inscricaoId,
-            @RequestBody InscricaoDTOUpdateStatusRequest inscricaoDTOUpdateStatusRequest
+            @RequestBody StatusUpdateDTORequest statusUpdateDTORequest
     ){
-        return ResponseEntity.ok(inscricaoService.atualizarStatusInscricao(inscricaoId, inscricaoDTOUpdateStatusRequest));
+        return ResponseEntity.ok(inscricaoService.atualizarStatusInscricao(inscricaoId, statusUpdateDTORequest));
     }
 
     @DeleteMapping("/remover/{inscricaoId}")

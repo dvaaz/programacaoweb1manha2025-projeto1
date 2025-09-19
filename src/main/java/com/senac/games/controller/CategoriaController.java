@@ -1,9 +1,9 @@
 package com.senac.games.controller;
 
 import com.senac.games.dto.request.CategoriaDTORequest;
-import com.senac.games.dto.request.CategoriaDTOUpdateStatusRequest;
+import com.senac.games.dto.request.StatusUpdateDTORequest;
 import com.senac.games.dto.response.CategoriaDTOResponse;
-import com.senac.games.dto.response.CategoriaDTOUpdateStatusResponse;
+import com.senac.games.dto.response.StatusUpdateDTOResponse;
 import com.senac.games.entities.Categoria;
 import com.senac.games.service.CategoriaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -64,12 +64,12 @@ public class CategoriaController {
 
     @PatchMapping("/atualizarStatus/{categoriaId}")
     @Operation(summary = "Alterar Status da categoria", description="Endpoint para alterar o status da categoria")
-    public ResponseEntity<CategoriaDTOUpdateStatusResponse> atualizarStatus(
+    public ResponseEntity<StatusUpdateDTOResponse> atualizarStatus(
             @Valid
             @PathVariable("categoriaId") Integer categoriaId,
-            @RequestBody CategoriaDTOUpdateStatusRequest categoriaDTOUpdateStatusRequest
+            @RequestBody StatusUpdateDTORequest statusUpdateDTORequest
     ){
-        return ResponseEntity.ok(categoriaService.atualizarStatusCategoria(categoriaId, categoriaDTOUpdateStatusRequest));
+        return ResponseEntity.ok(categoriaService.atualizarStatusCategoria(categoriaId, statusUpdateDTORequest));
     }
 
     @DeleteMapping("/remover/{categoriaId}")

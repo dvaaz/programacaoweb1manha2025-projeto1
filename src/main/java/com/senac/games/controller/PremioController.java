@@ -2,9 +2,9 @@ package com.senac.games.controller;
 
 
 import com.senac.games.dto.request.PremioDTORequest;
-import com.senac.games.dto.request.PremioDTOUpdateStatusRequest;
+import com.senac.games.dto.request.StatusUpdateDTORequest;
 import com.senac.games.dto.response.PremioDTOResponse;
-import com.senac.games.dto.response.PremioDTOUpdateStatusResponse;
+import com.senac.games.dto.response.StatusUpdateDTOResponse;
 import com.senac.games.entities.Premio;
 import com.senac.games.service.PremioService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -65,12 +65,12 @@ public class PremioController {
 
     @PatchMapping("/atualizarStatus/{premioId}")
     @Operation(summary = "Alterar Status da premio", description="Endpoint para alterar o status da premio")
-    public ResponseEntity<PremioDTOUpdateStatusResponse> atualizarStatus(
+    public ResponseEntity<StatusUpdateDTOResponse> atualizarStatus(
             @Valid
             @PathVariable("premioId") Integer premioId,
-            @RequestBody PremioDTOUpdateStatusRequest premioDTOUpdateStatusRequest
+            @RequestBody StatusUpdateDTORequest statusUpdateDTORequest
     ){
-        return ResponseEntity.ok(premioService.atualizarStatusPremio(premioId, premioDTOUpdateStatusRequest));
+        return ResponseEntity.ok(premioService.atualizarStatusPremio(premioId, statusUpdateDTORequest));
     }
 
     @DeleteMapping("/remover/{premioId}")

@@ -1,9 +1,9 @@
 package com.senac.games.service;
 
 import com.senac.games.dto.request.JogoDTORequest;
-import com.senac.games.dto.request.JogoDTOUpdateStatusRequest;
+import com.senac.games.dto.request.StatusUpdateDTORequest;
 import com.senac.games.dto.response.JogoDTOResponse;
-import com.senac.games.dto.response.JogoDTOUpdateStatusResponse;
+import com.senac.games.dto.response.StatusUpdateDTOResponse;
 import com.senac.games.entities.Categoria;
 import com.senac.games.entities.Jogo;
 import com.senac.games.repository.CategoriaRepository;
@@ -84,13 +84,13 @@ public class JogoService {
         } else return null;
     }
 
-    public JogoDTOUpdateStatusResponse atualizarStatusJogo(Integer jogoId, JogoDTOUpdateStatusRequest jogoDTOUpdateStatusRequest) {
+    public StatusUpdateDTOResponse atualizarStatusJogo(Integer jogoId, StatusUpdateDTORequest statusUpdateDTORequest) {
         Jogo jogo = this.buscarJogoPorId(jogoId);
         if (jogo != null) {
-            jogo.setStatus(jogoDTOUpdateStatusRequest.getStatus());
+            jogo.setStatus(statusUpdateDTORequest.getStatus());
 
             Jogo tempResponse = jogoRepository.save(jogo);
-            return modelMapper.map(tempResponse, JogoDTOUpdateStatusResponse.class);
+            return modelMapper.map(tempResponse, StatusUpdateDTOResponse.class);
         } else return null;
     }
 

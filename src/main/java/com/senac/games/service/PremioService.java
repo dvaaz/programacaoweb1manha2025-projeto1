@@ -1,13 +1,13 @@
 package com.senac.games.service;
 
 import com.senac.games.dto.request.PremioDTORequest;
-import com.senac.games.dto.request.PremioDTOUpdateStatusRequest;
+import com.senac.games.dto.request.StatusUpdateDTORequest;
 import com.senac.games.dto.request.PremioDTORequest;
-import com.senac.games.dto.request.PremioDTOUpdateStatusRequest;
+import com.senac.games.dto.request.StatusUpdateDTORequest;
 import com.senac.games.dto.response.PremioDTOResponse;
-import com.senac.games.dto.response.PremioDTOUpdateStatusResponse;
+import com.senac.games.dto.response.StatusUpdateDTOResponse;
 import com.senac.games.dto.response.PremioDTOResponse;
-import com.senac.games.dto.response.PremioDTOUpdateStatusResponse;
+import com.senac.games.dto.response.StatusUpdateDTOResponse;
 import com.senac.games.entities.Premio;
 import com.senac.games.entities.Premio;
 import com.senac.games.repository.PremioRepository;
@@ -47,13 +47,13 @@ public class PremioService {
         } else return null;
     }
 
-    public PremioDTOUpdateStatusResponse atualizarStatusPremio(Integer premioId, PremioDTOUpdateStatusRequest premioDTOUpdateStatusRequest) {
+    public StatusUpdateDTOResponse atualizarStatusPremio(Integer premioId, StatusUpdateDTORequest statusUpdateDTORequest) {
         Premio premio = this.listarPremioPorId(premioId);
         if (premio != null) {
-            premio.setStatus(premioDTOUpdateStatusRequest.getStatus());
+            premio.setStatus(statusUpdateDTORequest.getStatus());
 
             Premio tempResponse = premioRepository.save(premio);
-            return modelMapper.map(tempResponse, PremioDTOUpdateStatusResponse.class);
+            return modelMapper.map(tempResponse, StatusUpdateDTOResponse.class);
         } else return null;
     }
 
