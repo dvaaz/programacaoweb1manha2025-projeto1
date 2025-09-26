@@ -1,7 +1,7 @@
-package com.senac.games.dto.response;
+package com.senac.games.entities.dto.response;
 
 
-public class CategoriaDTOUpdateStatusResponse {
+public class JogoDTOUpdateStatusResponse {
 
   private Integer id;
 

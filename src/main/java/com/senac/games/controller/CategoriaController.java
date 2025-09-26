@@ -1,9 +1,9 @@
 package com.senac.games.controller;
 
-import com.senac.games.dto.request.CategoriaDTORequest;
-import com.senac.games.dto.request.CategoriaDTOUpdateStatusRequest;
-import com.senac.games.dto.response.CategoriaDTOResponse;
-import com.senac.games.dto.response.CategoriaDTOUpdateStatusResponse;
+import com.senac.games.entities.dto.request.CategoriaDTORequest;
+import com.senac.games.entities.dto.request.CategoriaDTOUpdateStatusRequest;
+import com.senac.games.entities.dto.response.CategoriaDTOResponse;
+import com.senac.games.entities.dto.response.CategoriaDTOUpdateStatusResponse;
 import com.senac.games.entities.Categoria;
 import com.senac.games.service.CategoriaService;
 import io.swagger.v3.oas.annotations.Operation;

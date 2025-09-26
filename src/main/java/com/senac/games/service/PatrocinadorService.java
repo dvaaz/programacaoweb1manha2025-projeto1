@@ -1,9 +1,9 @@
 package com.senac.games.service;
 
-import com.senac.games.dto.request.PatrocinadorDTORequest;
-import com.senac.games.dto.request.PatrocinadorDTOUpdateStatusRequest;
-import com.senac.games.dto.response.PatrocinadorDTOResponse;
-import com.senac.games.dto.response.PatrocinadorDTOUpdateStatusResponse;
+import com.senac.games.entities.dto.request.PatrocinadorDTORequest;
+import com.senac.games.entities.dto.request.PatrocinadorDTOUpdateStatusRequest;
+import com.senac.games.entities.dto.response.PatrocinadorDTOResponse;
+import com.senac.games.entities.dto.response.PatrocinadorDTOUpdateStatusResponse;
 import com.senac.games.entities.Patrocinador;
 import com.senac.games.repository.PatrocinadorRepository;
 import org.modelmapper.ModelMapper;

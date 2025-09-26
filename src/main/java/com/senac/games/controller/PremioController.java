@@ -1,10 +1,10 @@
 package com.senac.games.controller;
 
 
-import com.senac.games.dto.request.PremioDTORequest;
-import com.senac.games.dto.request.PremioDTOUpdateStatusRequest;
-import com.senac.games.dto.response.PremioDTOResponse;
-import com.senac.games.dto.response.PremioDTOUpdateStatusResponse;
+import com.senac.games.entities.dto.request.PremioDTORequest;
+import com.senac.games.entities.dto.request.PremioDTOUpdateStatusRequest;
+import com.senac.games.entities.dto.response.PremioDTOResponse;
+import com.senac.games.entities.dto.response.PremioDTOUpdateStatusResponse;
 import com.senac.games.entities.Premio;
 import com.senac.games.service.PremioService;
 import io.swagger.v3.oas.annotations.Operation;

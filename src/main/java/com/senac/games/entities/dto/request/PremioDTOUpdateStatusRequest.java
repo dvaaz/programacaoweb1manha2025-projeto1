@@ -1,12 +1,13 @@
-package com.senac.games.dto.request;
+package com.senac.games.entities.dto.request;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
-public class CategoriaDTOUpdateStatusRequest {
+public class PremioDTOUpdateStatusRequest {
     @NotNull
+    @NotEmpty
     @Min(1)
     @Max(2)
     private Integer status;
@@ -15,7 +16,9 @@ public class CategoriaDTOUpdateStatusRequest {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
+
+
 }

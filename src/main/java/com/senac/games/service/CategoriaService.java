@@ -1,9 +1,9 @@
 package com.senac.games.service;
 
-import com.senac.games.dto.request.CategoriaDTORequest;
-import com.senac.games.dto.request.CategoriaDTOUpdateStatusRequest;
-import com.senac.games.dto.response.CategoriaDTOResponse;
-import com.senac.games.dto.response.CategoriaDTOUpdateStatusResponse;
+import com.senac.games.entities.dto.request.CategoriaDTORequest;
+import com.senac.games.entities.dto.request.CategoriaDTOUpdateStatusRequest;
+import com.senac.games.entities.dto.response.CategoriaDTOResponse;
+import com.senac.games.entities.dto.response.CategoriaDTOUpdateStatusResponse;
 import com.senac.games.entities.Categoria;
 import com.senac.games.repository.CategoriaRepository;
 import org.modelmapper.ModelMapper;

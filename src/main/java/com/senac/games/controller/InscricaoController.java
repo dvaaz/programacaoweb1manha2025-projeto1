@@ -1,9 +1,9 @@
 package com.senac.games.controller;
 
-import com.senac.games.dto.request.InscricaoDTORequest;
-import com.senac.games.dto.request.InscricaoDTOUpdateStatusRequest;
-import com.senac.games.dto.response.InscricaoDTOResponse;
-import com.senac.games.dto.response.InscricaoDTOUpdateStatusResponse;
+import com.senac.games.entities.dto.request.InscricaoDTORequest;
+import com.senac.games.entities.dto.request.InscricaoDTOUpdateStatusRequest;
+import com.senac.games.entities.dto.response.InscricaoDTOResponse;
+import com.senac.games.entities.dto.response.InscricaoDTOUpdateStatusResponse;
 import com.senac.games.entities.Inscricao;
 import com.senac.games.service.InscricaoService;
 import io.swagger.v3.oas.annotations.Operation;

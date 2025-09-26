@@ -1,14 +1,13 @@
 package com.senac.games.controller;
 
-import com.senac.games.dto.request.ParticipanteDTORequest;
-import com.senac.games.dto.request.ParticipanteDTOUpdateStatusRequest;
-import com.senac.games.dto.response.ParticipanteDTOResponse;
-import com.senac.games.dto.response.ParticipanteDTOUpdateStatusResponse;
+import com.senac.games.entities.dto.request.ParticipanteDTORequest;
+import com.senac.games.entities.dto.request.ParticipanteDTOUpdateStatusRequest;
+import com.senac.games.entities.dto.response.ParticipanteDTOResponse;
+import com.senac.games.entities.dto.response.ParticipanteDTOUpdateStatusResponse;
 import com.senac.games.entities.Participante;
 import com.senac.games.service.ParticipanteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.servlet.http.Part;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

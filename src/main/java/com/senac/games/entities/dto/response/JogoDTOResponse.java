@@ -1,4 +1,4 @@
-package com.senac.games.dto.response;
+package com.senac.games.entities.dto.response;
 
 public class JogoDTOResponse {
   private Integer id;

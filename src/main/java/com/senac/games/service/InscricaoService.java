@@ -1,9 +1,9 @@
 package com.senac.games.service;
 
-import com.senac.games.dto.request.InscricaoDTORequest;
-import com.senac.games.dto.request.InscricaoDTOUpdateStatusRequest;
-import com.senac.games.dto.response.InscricaoDTOResponse;
-import com.senac.games.dto.response.InscricaoDTOUpdateStatusResponse;
+import com.senac.games.entities.dto.request.InscricaoDTORequest;
+import com.senac.games.entities.dto.request.InscricaoDTOUpdateStatusRequest;
+import com.senac.games.entities.dto.response.InscricaoDTOResponse;
+import com.senac.games.entities.dto.response.InscricaoDTOUpdateStatusResponse;
 import com.senac.games.entities.Inscricao;
 import com.senac.games.repository.InscricaoRepository;
 import org.modelmapper.ModelMapper;

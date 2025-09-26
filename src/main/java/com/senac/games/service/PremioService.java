@@ -1,16 +1,10 @@
 package com.senac.games.service;
 
-import com.senac.games.dto.request.PremioDTORequest;
-import com.senac.games.dto.request.PremioDTOUpdateStatusRequest;
-import com.senac.games.dto.request.PremioDTORequest;
-import com.senac.games.dto.request.PremioDTOUpdateStatusRequest;
-import com.senac.games.dto.response.PremioDTOResponse;
-import com.senac.games.dto.response.PremioDTOUpdateStatusResponse;
-import com.senac.games.dto.response.PremioDTOResponse;
-import com.senac.games.dto.response.PremioDTOUpdateStatusResponse;
+import com.senac.games.entities.dto.request.PremioDTORequest;
+import com.senac.games.entities.dto.request.PremioDTOUpdateStatusRequest;
+import com.senac.games.entities.dto.response.PremioDTOResponse;
+import com.senac.games.entities.dto.response.PremioDTOUpdateStatusResponse;
 import com.senac.games.entities.Premio;
-import com.senac.games.entities.Premio;
-import com.senac.games.repository.PremioRepository;
 import com.senac.games.repository.PremioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

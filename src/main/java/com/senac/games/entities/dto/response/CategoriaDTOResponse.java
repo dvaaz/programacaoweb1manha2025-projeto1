@@ -1,13 +1,12 @@
-package com.senac.games.dto.response;
+package com.senac.games.entities.dto.response;
 
-public class PatrocinadorDTOResponse {
+public class CategoriaDTOResponse {
   private Integer id;
   private String nome;
-  private String representanteNome;
+
   private int status;
 
-  public Integer getId() {
-    return id;
+  public Integer getId() {    return id;
   }
 
   public void setId(Integer id) {
@@ -20,14 +19,6 @@ public class PatrocinadorDTOResponse {
 
   public void setNome(String nome) {
     this.nome = nome;
-  }
-
-  public String getRepresentanteNome() {
-    return representanteNome;
-  }
-
-  public void setRepresentanteNome(String representanteNome) {
-    this.representanteNome = representanteNome;
   }
 
   public int getStatus() {
