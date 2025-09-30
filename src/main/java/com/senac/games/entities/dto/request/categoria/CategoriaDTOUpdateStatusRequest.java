@@ -1,8 +1,7 @@
-package com.senac.games.entities.dto.request;
+package com.senac.games.entities.dto.request.categoria;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 public class CategoriaDTOUpdateStatusRequest {

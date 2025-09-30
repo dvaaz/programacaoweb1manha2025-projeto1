@@ -1,4 +1,4 @@
-package com.senac.games.entities.dto.request;
+package com.senac.games.entities.dto.request.categoria;
 
 
 import jakarta.validation.constraints.*;

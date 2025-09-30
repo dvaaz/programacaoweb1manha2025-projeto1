@@ -8,38 +8,27 @@ import java.util.List;
 @Entity
 @Table(name = "role")
 public class Role {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name ="role_id")
-  private Integer id;
-
-  @Column(name ="role_name")
-  private String name;
+  private Long id;
 
   @Enumerated(EnumType.STRING)
-  private RoleName roleName;
+  private RoleName name;
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
-  public String getName() {
+  public RoleName getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(RoleName name) {
     this.name = name;
-  }
-
-  public RoleName getRoleName() {
-    return roleName;
-  }
-
-  public void setRoleName(RoleName roleName) {
-    this.roleName = roleName;
   }
 }
